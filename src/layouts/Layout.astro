@@ -128,16 +128,17 @@ const pathWithoutLang = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.webp" />
    
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6af85fca72f6053e0a1bed62&product=sop"  async="async"></script>
-  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
-<script>
-  window.googletag = window.googletag || {cmd: []};
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/21857590943,23337107551/rasuplus_tiktokio.cam/rasuplus_tiktokio.cams_970x90', [970, 90], 'div-gpt-ad-1795001676021-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().collapseEmptyDivs();
-    googletag.enableServices();
-  });
-</script>
+  
+    <!-- GPT ad slot for features section -->
+    <script is:inline>
+      window.googletag = window.googletag || {cmd: []};
+      googletag.cmd.push(function() {
+        googletag.defineSlot('/21857590943/rasuplus_tiktokio.cam/rasuplus_tiktokio.cams_336x280_1', [336, 280], 'div-gpt-ad-1795001620273-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+      });
+    </script>
     <slot name="head" />
   </head>
 
