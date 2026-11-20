@@ -64,6 +64,39 @@ const features = [
 	</div>
 	</div>
 	
+	<!-- Ad: centered, between the intro box and the "How it works" section -->
+	<div class="flex justify-center items-center w-full my-6">
+		<div id="div-gpt-ad-1795001620273-0" style="min-width: 336px; min-height: 280px;">
+			<script is:inline>
+				window.googletag = window.googletag || {cmd: []};
+				(function () {
+					// load gpt.js only if no other ad on the page has loaded it already
+					if (!document.querySelector('script[src*="securepubads.g.doubleclick.net/tag/js/gpt.js"]')) {
+						var s = document.createElement('script');
+						s.async = true;
+						s.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+						s.crossOrigin = 'anonymous';
+						document.head.appendChild(s);
+					}
+				})();
+				googletag.cmd.push(function () {
+					var slot = googletag.defineSlot('/21857590943/rasuplus_tiktokio.cam/rasuplus_tiktokio.cams_336x280_1', [336, 280], 'div-gpt-ad-1795001620273-0');
+					if (!slot) return;
+					slot.addService(googletag.pubads());
+					// collapse this div if no ad is returned (page-level collapseEmptyDivs is not used, see note)
+					googletag.pubads().addEventListener('slotRenderEnded', function (e) {
+						if (e.slot === slot && e.isEmpty) {
+							var el = document.getElementById('div-gpt-ad-1795001620273-0');
+							if (el) { el.style.minHeight = '0'; el.style.display = 'none'; }
+						}
+					});
+					googletag.enableServices();
+					googletag.display('div-gpt-ad-1795001620273-0');
+				});
+			</script>
+		</div>
+	</div>
+
 	<h2 class="text-2xl text-center md:text-3xl font-bold text-gray-900"><span class="text-orange-400">{t('home.main.title')}</span> {t('home.how.works_h2')}</h2>
 	<p class="text-left mx-auto text-lg text-gray-900" set:html={t('home.main.popular_text')} />
 
@@ -120,12 +153,7 @@ const features = [
 		</div> 
 	</div>
 
-<!-- /21857590943,23337107551/rasuplus_tiktokio.cam/rasuplus_tiktokio.cams_970x90 -->
-<div id='div-gpt-ad-1795001676021-0' style='min-width: 970px; min-height: 90px;'>
-  <script>
-    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1795001676021-0'); });
-  </script>
-</div>
+
 
 <div class="text-center py-8">
 						<h2 class="text-2xl md:text-3xl font-bold text-gray-900">{t('home.main.hkf1')} <span class="text-orange-400">{t('home.main.title')}</span> {t('home.main.hkf2')}</h2>
