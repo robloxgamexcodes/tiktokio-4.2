@@ -1,0 +1,153 @@
+---
+import '../layouts/index.css';
+
+import Navbar from '../components/navbar/navbar.astro';
+import Footer from '../components/footer.astro';
+import ThemeSelector from '../components/themeselector.astro';
+import LanguageSelector from '../components/languageselector.astro';
+
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { clampTitle, clampDescription } from '../i18n/seo';
+
+const safeUrl = Astro.url || new URL('/', Astro.site || 'http://localhost:4321');
+const lang = getLangFromUrl(safeUrl);
+
+let t;
+try {
+  t = useTranslations(lang);
+} catch (e) {
+  console.warn('i18n init failed:', e);
+  t = (key: string) => key;
+}
+
+// Page slug (without language prefix) -> key prefix in src/i18n/ui.ts for <title>/<meta description>
+const PAGE_KEYS: Record<string, string> = {
+  'tiktok-video-downloader': 'tvd',
+  'tiktok-downloader': 'td',
+  'download-tiktok-video': 'dtv',
+  'tiktok-photo-downloader': 'dft',
+  'tiktok-thumbnail-downloader': 'thumb',
+  'musical-down-tiktok-downloader': 'md',
+  'savefrom-download-from-tiktok': 'savef',
+  'savetik-download-tiktok-video-without-watermark-free': 'savetik',
+  'savett-tiktok-downloader-save-tiktok-videos': 'savett',
+  'snaptik-tiktok-downloader-download-video-tiktok-without-watermark': 'snaptik',
+  'ssstiktok-download-tiktok-videos-without-watermark-free-tiktok-video-downloader': 'ssstiktok',
+  'tikmate-tiktok-downloader-without-watermark-in-hd': 'tikmate',
+  'tiksave-download-tiktok-video-without-watermark-with-tiktok-downloader': 'tiksave',
+  'tiktoksss-tiktok-downloader-without-watermark': 'tiktoksss',
+  'tmate-tiktok-downloader': 'tmate',
+  'ttdownloader-downloader-no-watermark-video-downloader-for-tiktok': 'ttdownloader',
+  'terms-of-service': 'terms',
+};
+const _slug = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|ru|pt|ko|tl|nl|ms|tr)\//, '/').replace(/^\/|\/$/g, '');
+const pageKey = PAGE_KEYS[_slug] ?? (/^blog(\/\d+)?$/.test(_slug) ? 'blog.meta' : undefined);
+const pageTitle = pageKey ? (t as any)(`${pageKey}.title`) : undefined;
+const pageDescription = pageKey ? (t as any)(`${pageKey}.description`) : undefined;
+
+// Blog tag and category archives: noindex, nofollow (and never listed in the sitemaps)
+const isTaxonomyPage = /^blog\/(tag|category)\//.test(_slug);
+
+const {
+  title: titleProp,
+  description: descriptionProp,
+  keywords = t('site.keywords') ?? 'tiktokio, tiktok downloader, video downloader, no watermark, download tiktok',
+  image = 'meta/opengraph.webp',
+  ogType = 'website',
+  variant = 'default',
+  noindex = isTaxonomyPage,
+} = Astro.props;
+
+// ui.ts keys win for the pages above; otherwise explicit props; otherwise site defaults.
+// clampTitle/clampDescription are a safety net (title <= 60, description <= 160 characters).
+const title = clampTitle(pageTitle ?? titleProp ?? t('site.title') ?? 'TikTokio - Free TikTok Video Downloader Online No Watermark');
+const description = clampDescription(pageDescription ?? descriptionProp ?? t('site.description') ?? 'TikTokio is 100% free to Download TikTok videos in HD instantly, no app, no registration!');
+
+const siteUrl = (Astro.site ? Astro.site.toString().replace(/\/$/, '') : '') || 'https://tiktokio.cam';
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+const ogImageUrl = `${siteUrl}/${image.replace(/^\/+/, '')}`;
+
+const locales = ['en', 'it', 'vi', 'ar', 'fr', 'de', 'es', 'hi', 'id', 'ru', 'pt', 'ko', 'tl', 'nl', 'ms', 'tr'];
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|ru|pt|ko|tl|nl|ms|tr)\//, '/');
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="ahrefs-site-verification" content="0d2143a2ca098637c66936a08ea45310469848c903125248521f18dff3b33c68">
+
+    <!-- Basic SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="keywords" content={keywords} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    {locales.map((l) => {
+      const href = l === 'en' 
+        ? `${siteUrl}${pathWithoutLang}` 
+        : `${siteUrl}/${l}${pathWithoutLang}`;
+      return <link rel="alternate" hreflang={l} href={href} />;
+    })}
+
+    <!-- x-default -->
+    <link 
+      rel="alternate" 
+      hreflang="x-default" 
+      href={`${siteUrl}${pathWithoutLang}`} 
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="TikTokio" />
+    <meta name="application-name" content="TikTokio" />
+    <meta name="apple-mobile-web-app-title" content="TikTokio" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : `${lang}_${lang.toUpperCase()}`} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/ico" href="/fav.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.webp" />
+   
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6af85fca72f6053e0a1bed62&product=sop"  async="async"></script>
+  
+
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "w6t54pa57n");
+    </script>
+    <slot name="head" />
+  </head>
+
+  <body class="antialiased">
+    <Navbar variant={variant} lang={lang} />
+    <main class="min-h-[calc(100vh-200px)]">
+      <slot name="hero" />
+      <slot name="features" />
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script src="/src/pwa.ts"></script>
+  </body>
+</html>
