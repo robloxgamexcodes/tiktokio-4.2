@@ -1,4 +1,5 @@
 // src/components/ResultSection.tsx
+import AdSlot from "./AdSlot";
 
 interface ResultSectionProps {
   data: {
@@ -370,6 +371,9 @@ function ResultSection(props: ResultSectionProps) {
                     Download Profile Picture
                   </button>
                 )}
+
+                {/* Ad – centered, right after the Download Profile Picture button */}
+                {avatarUrl && <AdSlot id="gpt-passback-result" />}
 
                 {/* ── Download Buttons ─────────────────────────────────────────── */}
                 <div class="space-y-2">

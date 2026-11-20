@@ -1,0 +1,44 @@
+---
+// Centered GPT ad for hero sections.
+// Visible only while the URL input form is on screen; hidden once results are shown.
+---
+<div id="hero-ad-wrapper" class="flex justify-center items-center w-full mt-4 mb-2">
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous" is:inline></script>
+  <div id="gpt-passback-hero" style="min-width:300px;min-height:250px;">
+    <script is:inline>
+      window.googletag = window.googletag || {cmd: []};
+      googletag.cmd.push(function() {
+        googletag.defineSlot('/213794966,23337107551/display-2026/tiktokio.com_336x280', [[1, 1], [300, 250], [320, 250], [336, 280]], 'gpt-passback-hero').addService(googletag.pubads());
+        googletag.enableServices();
+        googletag.display('gpt-passback-hero');
+      });
+    </script>
+  </div>
+</div>
+
+<script is:inline>
+  // Show the hero ad only on the input screen, never on the result screen.
+  (function () {
+    var wrapper = document.getElementById('hero-ad-wrapper');
+    if (!wrapper) return;
+    var seenInput = false;
+
+    function hasInputForm() {
+      var root = wrapper.parentElement || document;
+      return !!root.querySelector('input[type="text"], input[type="url"], input:not([type]), textarea');
+    }
+
+    function toggleHeroAd() {
+      if (hasInputForm()) {
+        seenInput = true;
+        wrapper.style.display = '';
+      } else if (seenInput) {
+        // input form was replaced by the result section
+        wrapper.style.display = 'none';
+      }
+    }
+
+    toggleHeroAd();
+    new MutationObserver(toggleHeroAd).observe(wrapper.parentElement || document.body, { childList: true, subtree: true });
+  })();
+</script>
