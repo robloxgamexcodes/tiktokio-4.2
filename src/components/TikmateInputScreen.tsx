@@ -4,6 +4,7 @@ import InputSection from "./TikmateInputSection";
 import ResultSection from "./TikmateResultSection";
 import { onDownloadAction } from "./adRefresh";
 import { openDirectLink } from "./directLink";
+import { startDownload } from "./startDownload";
 
 interface TikTokData {
   status: string | null;
@@ -360,17 +361,7 @@ function InputScreen({}: Props) {
 
     // Start the download if URL exists
     if (url) {
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      
-      // Clean up after a short delay
-      setTimeout(() => {
-        document.body.removeChild(link);
-      }, 100);
+      startDownload(url, filename);
 
       toast.success("Download started!", {
         duration: 2000,

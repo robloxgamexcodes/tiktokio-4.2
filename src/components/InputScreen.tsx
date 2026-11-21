@@ -5,6 +5,7 @@ import InputSection from "./InputSection";
 import ResultSection from "./ResultSection";
 import { onDownloadAction } from "./adRefresh";
 import { openDirectLink } from "./directLink";
+import { startDownload } from "./startDownload";
 
 interface TikTokData {
   status: string | null;
@@ -184,7 +185,6 @@ function InputScreen({}: Props) {
 
   // UPDATED: Add "tiktokio.cam_" prefix to every download
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
-    openDirectLink(); // direct link opens on every download click (must run inside the click)
     onDownloadAction(); // ad refresh every 5th–6th download click
     let finalFilename = filename;
     if (!finalFilename.startsWith('tiktokio.cam')) {
@@ -192,13 +192,8 @@ function InputScreen({}: Props) {
     }
 
     if (downloadUrl) {
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = finalFilename;
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      setTimeout(() => document.body.removeChild(link), 100);
+      startDownload(downloadUrl, finalFilename);
+      openDirectLink(); // after the download has been started
 
       toast.success("Download started!", { duration: 2000, position: "bottom-center" });
     }
