@@ -12,11 +12,7 @@ export type FeaturedLink = { html: string };
 
 export const featuredLinksTitle = 'Featured Links';
 
-export const featuredLinks: FeaturedLink[] = [
-  {
-    html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="120" height="36"></a>`,
-  },
-];
+
 
 export const moreLinkGroups = ["Online tools", "Streaming & APK sites", "Games & apps"];
 
@@ -61,4 +57,10 @@ export const moreLinks: MoreLink[] = [
   { label: "We999", url: "https://we99.com.pk/", group: "Games & apps" },
   { label: "Betpkr", url: "https://betpkrapp.com.pk/", group: "Games & apps" },
   { label: "Six Game", url: "https://sixgames.com.pk/", group: "Games & apps" },
+];
+
+export const featuredLinks: FeaturedLink[] = [
+  {
+    html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="120" height="36"></a>`,
+  },
 ];
