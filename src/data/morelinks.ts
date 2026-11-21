@@ -77,7 +77,8 @@ export const featuredLinks: FeaturedLink[] = [
   
   {
     html: `<a href="https://best-ai.org" target="_blank" rel="noopener"><img src="https://best-ai.org/images/badge-best-ai-org.png" alt="Listed on Best-AI.org" width="120" height="36"/></a>`,
+  },
+  {
+    html: `<a href="https://aitrovex.com/" target="_blank"><img src="https://aitrovex.com/badge-listed-light.svg" alt="Listed on AITroveX" style="height: 36px; width: 120px;" /></a>`,
   }
-
-
 ];
