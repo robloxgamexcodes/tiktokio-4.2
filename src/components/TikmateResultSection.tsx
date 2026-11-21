@@ -1,4 +1,5 @@
 // src/components/ResultSection.tsx
+import AdSlot from "./AdSlot";
 interface ResultSectionProps {
   data: any; // TikTokData | null
   getVideoUrl: () => string;
@@ -153,6 +154,9 @@ function ResultSection(props: ResultSectionProps) {
                   </div>
                 </div>
                 
+                {/* Ad – centered, above the download buttons */}
+                <AdSlot id="gpt-passback-result-tikmate" />
+
                 <div class="space-y-2">
                   {/* Download SD */}
                   {props.data.result.videoSD && (

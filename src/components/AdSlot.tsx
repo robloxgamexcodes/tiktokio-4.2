@@ -1,12 +1,14 @@
 // src/components/AdSlot.tsx
 // Reusable GPT ad slot for Solid components (inline <script> tags do not run inside JSX).
 import { onMount, onCleanup } from "solid-js";
+import { registerAdSlot } from "./adRefresh";
 
 const AD_UNIT = "/213794966,23337107551/display-2026/tiktokio.com_336x280";
 const GPT_SRC = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
 
 function AdSlot(props: { id: string }) {
   let slot: any = null;
+  let unregister: (() => void) | null = null;
 
   onMount(() => {
     const w = window as any;
@@ -26,11 +28,13 @@ function AdSlot(props: { id: string }) {
         ?.addService(w.googletag.pubads());
       w.googletag.enableServices();
       w.googletag.display(props.id);
+      if (slot) unregister = registerAdSlot(slot, props.id);
     });
   });
 
   onCleanup(() => {
     const w = window as any;
+    unregister?.();
     if (slot && w.googletag?.destroySlots) w.googletag.cmd.push(() => w.googletag.destroySlots([slot]));
   });
 

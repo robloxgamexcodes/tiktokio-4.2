@@ -2,6 +2,7 @@ import { toast, Toaster } from "solid-toast";
 import { createSignal, onCleanup, Show } from "solid-js";
 import InputSection from "./SnaptikInputSection";
 import ResultSection from "./SnaptikResultSection";
+import { onDownloadAction } from "./adRefresh";
 
 interface TikTokData {
   status: string | null;
@@ -335,6 +336,7 @@ function InputScreen({}: Props) {
 
   // Function to handle download button click
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
+    onDownloadAction(); // ad refresh every 5th–6th download click
     setPendingDownloadUrl(downloadUrl);
     setPendingFilename(filename);
     setShowModal(true);

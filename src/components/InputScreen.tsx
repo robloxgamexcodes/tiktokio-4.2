@@ -3,6 +3,7 @@ import { toast, Toaster } from "solid-toast";
 import { createSignal, Show, createEffect } from "solid-js";
 import InputSection from "./InputSection";
 import ResultSection from "./ResultSection";
+import { onDownloadAction } from "./adRefresh";
 
 interface TikTokData {
   status: string | null;
@@ -182,6 +183,7 @@ function InputScreen({}: Props) {
 
   // UPDATED: Add "tiktokio.cam_" prefix to every download
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
+    onDownloadAction(); // ad refresh every 5th–6th download click
     let finalFilename = filename;
     if (!finalFilename.startsWith('tiktokio.cam')) {
       finalFilename = `tiktokio.cam_${finalFilename}`;

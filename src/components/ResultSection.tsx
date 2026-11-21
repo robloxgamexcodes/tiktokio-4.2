@@ -1,5 +1,6 @@
 // src/components/ResultSection.tsx
 import AdSlot from "./AdSlot";
+import { onDownloadAction } from "./adRefresh";
 
 interface ResultSectionProps {
   data: {
@@ -114,6 +115,7 @@ function ResultSection(props: ResultSectionProps) {
       document.body.appendChild(link);
       link.click();
       setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(objectUrl); }, 1000);
+      onDownloadAction(); // ad refresh every 5th–6th download click
     } catch (err) {
       console.error("Avatar download failed:", err);
       alert(`Could not download the profile picture.\n${(err as Error).message}`);
@@ -155,6 +157,7 @@ function ResultSection(props: ResultSectionProps) {
       document.body.appendChild(link);
       link.click();
       setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(objectUrl); }, 1000);
+      onDownloadAction(); // ad refresh every 5th–6th download click
     } catch (err) {
       console.error("Thumbnail download failed:", err);
       alert(`Could not download the thumbnail.\n${(err as Error).message}`);
