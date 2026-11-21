@@ -70,5 +70,16 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://smollaunch.com" target="_blank" rel="noopener"><img src="https://smollaunch.com/badges/featured.svg" alt="TikTokio — Featured on Smol Launch" loading="lazy" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://outvote.lol/p/tiktokio-cam?ref=badge"><img src="https://outvote.lol/badge.svg?theme=light&amp;draft=eeaa903a-2f43-47b2-bf35-c3bd07dfb2d9" alt="Discover us on Outvote" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://outvote.lol/p/tiktokio-cam?ref=badge"><img src="https://outvote.lol/badge.svg?theme=light&amp;draft=eeaa903a-2f43-47b2-bf35-c3bd07dfb2d9" alt="Discover us on Outvote" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://best-ai.org" target="_blank" rel="noopener"><img src="https://best-ai.org/images/badge-best-ai-org.png" alt="Listed on Best-AI.org" width="120" height="36"/></a>`,
   }
+
+
 ];
