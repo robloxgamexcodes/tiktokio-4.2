@@ -61,13 +61,12 @@ export const featuredLinks: FeaturedLink[] = [
   {
     html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="120" height="36"></a>`,
   },
-  {
-    html: `<a href="https://stackdirectory.com/product/tiktokio" target="_blank" ><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" width="120" height="36" loading="lazy"></a>`,
-  },
-  {
-    html: `<a href="https://stackdirectory.com/product/tiktokio" target="_blank" ><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" width="120" height="36" loading="lazy"></a>`,
-  },
+  
   {
     html: `<a href="https://circlesaasboard.com/startup/5-letter-word-finder-520271" target="_blank" rel="noopener"><img src="https://circlesaasboard.com/badge.svg" alt="Featured on CircleSaaS" width="120" height="36" /></a>`,
-  }
+  },
+
+{
+    html: `<a href="https://nicklaunches.com/products/tiktokio/" target="_blank" rel="noopener"><img src="https://nicklaunches.com/badges/featured.png" alt="Tiktokio on Nick Launches" width="120" height="36" /></a>`,
+}
 ];
