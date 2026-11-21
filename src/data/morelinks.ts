@@ -6,6 +6,18 @@ export type MoreLink = { label: string; url: string; group: string };
 export const moreLinksTitle = 'More Links & Resources';
 export const moreLinksNote = 'Sponsored and third-party links. TikTokio is not responsible for the content of external sites.';
 
+// Featured Links (badges/widgets). `html` is rendered exactly as written, so verification
+// services (e.g. FrogDR) can find the link. Do not add rel/nofollow attributes to these.
+export type FeaturedLink = { html: string };
+
+export const featuredLinksTitle = 'Featured Links';
+
+export const featuredLinks: FeaturedLink[] = [
+  {
+    html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="250" height="54"></a>`,
+  },
+];
+
 export const moreLinkGroups = ["Online tools", "Streaming & APK sites", "Games & apps"];
 
 export const moreLinks: MoreLink[] = [
