@@ -64,4 +64,10 @@ export const featuredLinks: FeaturedLink[] = [
   {
     html: `<a href="https://stackdirectory.com/product/tiktokio" target="_blank" ><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" width="120" height="36" loading="lazy"></a>`,
   },
+  {
+    html: `<a href="https://stackdirectory.com/product/tiktokio" target="_blank" ><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" width="120" height="36" loading="lazy"></a>`,
+  },
+  {
+    html: `<a href="https://circlesaasboard.com/startup/5-letter-word-finder-520271" target="_blank" rel="noopener"><img src="https://circlesaasboard.com/badge.svg" alt="Featured on CircleSaaS" width="120" height="36" /></a>`,
+  }
 ];
