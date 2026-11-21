@@ -12,8 +12,6 @@ export type FeaturedLink = { html: string };
 
 export const featuredLinksTitle = 'Featured Links';
 
-
-
 export const moreLinkGroups = ["Online tools", "Streaming & APK sites", "Games & apps"];
 
 export const moreLinks: MoreLink[] = [
@@ -62,8 +60,8 @@ export const moreLinks: MoreLink[] = [
 export const featuredLinks: FeaturedLink[] = [
   {
     html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="120" height="36"></a>`,
-    html: `<a href="https://stackdirectory.com/product/tiktokio" target="_blank" ><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" height="36" loading="lazy"></a>`,
+  },
+  {
+    html: `<a href="https://stackdirectory.com/product/tiktokio" target="_blank" ><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" width="120" height="36" loading="lazy"></a>`,
   },
 ];
-
-
