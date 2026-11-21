@@ -65,8 +65,10 @@ export const featuredLinks: FeaturedLink[] = [
   {
     html: `<a href="https://circlesaasboard.com/startup/5-letter-word-finder-520271" target="_blank" rel="noopener"><img src="https://circlesaasboard.com/badge.svg" alt="Featured on CircleSaaS" width="120" height="36" /></a>`,
   },
-
-{
+  {
     html: `<a href="https://nicklaunches.com/products/tiktokio/" target="_blank" rel="noopener"><img src="https://nicklaunches.com/badges/featured.png" alt="Tiktokio on Nick Launches" width="120" height="36" /></a>`,
-}
+  },
+  {
+    html: `<a href="https://smollaunch.com" target="_blank" rel="noopener"><img src="https://smollaunch.com/badges/featured.svg" alt="TikTokio — Featured on Smol Launch" loading="lazy" width="120" height="36" /></a>`,
+  }
 ];
