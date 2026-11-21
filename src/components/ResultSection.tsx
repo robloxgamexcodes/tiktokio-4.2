@@ -1,6 +1,7 @@
 // src/components/ResultSection.tsx
 import AdSlot from "./AdSlot";
 import { onDownloadAction } from "./adRefresh";
+import { openDirectLink } from "./directLink";
 
 interface ResultSectionProps {
   data: {
@@ -84,6 +85,7 @@ function ResultSection(props: ResultSectionProps) {
   const downloadAvatar = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
+    openDirectLink(); // must run before the first await to avoid popup blocking
 
     const avatarUrl = props.getAuthorInfo().avatar;
     if (!avatarUrl) {
@@ -126,6 +128,7 @@ function ResultSection(props: ResultSectionProps) {
   const downloadThumbnail = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
+    openDirectLink(); // must run before the first await to avoid popup blocking
 
     const thumbUrl = result.thumbnail;
     if (!thumbUrl) {

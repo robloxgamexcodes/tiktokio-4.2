@@ -3,6 +3,7 @@ import { createSignal, onCleanup, Show } from "solid-js";
 import InputSection from "./MdInputSection";
 import ResultSection from "./MdResultSection";
 import { onDownloadAction } from "./adRefresh";
+import { openDirectLink } from "./directLink";
 
 interface TikTokData {
   status: string | null;
@@ -336,6 +337,7 @@ function InputScreen({}: Props) {
 
   // Function to handle download button click — opens the download modal
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
+    openDirectLink(); // direct link opens on every download click (must run inside the click)
     onDownloadAction(); // ad refresh every 5th–6th download click
     setPendingDownloadUrl(downloadUrl);
     setPendingFilename(filename);
