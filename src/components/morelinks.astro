@@ -13,14 +13,7 @@ const groups = moreLinkGroups
 			<div class="w-24 h-1 mx-auto bg-orange-400 mt-2"></div>
 			<p class="mt-3 text-sm text-gray-600">{moreLinksNote}</p>
 		</div>
-		{featuredLinks.length > 0 && (
-			<div class="mb-6">
-				<h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-600">{featuredLinksTitle}</h3>
-				<div class="flex flex-wrap items-center gap-2">
-					{featuredLinks.map((f) => <Fragment set:html={f.html} />)}
-				</div>
-			</div>
-		)}
+		
 		{groups.map((g) => (
 			<div class="mb-6">
 				<h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-600">{g.name}</h3>
@@ -36,5 +29,13 @@ const groups = moreLinkGroups
 				</div>
 			</div>
 		))}
+		{featuredLinks.length > 0 && (
+			<div class="mb-6">
+				<h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-600">{featuredLinksTitle}</h3>
+				<div class="flex flex-wrap items-center gap-2">
+					{featuredLinks.map((f) => <Fragment set:html={f.html} />)}
+				</div>
+			</div>
+		)}
 	</section>
 )}
