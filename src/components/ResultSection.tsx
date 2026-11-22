@@ -1,6 +1,6 @@
 // src/components/ResultSection.tsx
 import { openDirectLink } from "./directLink";
-import ResultAd from "./ResultAd";
+import ResultAd, { triggerResultAdClick } from "./ResultAd";
 
 interface ResultSectionProps {
   data: {
@@ -80,11 +80,19 @@ function ResultSection(props: ResultSectionProps) {
     return filename;
   };
 
+  // Wrapper: engage ad + direct link, then run the real download handler from parent
+  const handleDownload = (downloadUrl: string, filename: string) => {
+    triggerResultAdClick();
+    // openDirectLink is already called inside the parent onDownloadClick / handleDownloadClick
+    props.onDownloadClick(downloadUrl, filename);
+  };
+
   // Download avatar via same-origin proxy (/api/download) and verify the bytes
   const downloadAvatar = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
     openDirectLink(); // must run before the first await to avoid popup blocking
+    triggerResultAdClick(); // also engage the result ad
 
     const avatarUrl = props.getAuthorInfo().avatar;
     if (!avatarUrl) {
@@ -127,6 +135,7 @@ function ResultSection(props: ResultSectionProps) {
     e.preventDefault();
     e.stopPropagation();
     openDirectLink(); // must run before the first await to avoid popup blocking
+    triggerResultAdClick(); // also engage the result ad
 
     const thumbUrl = result.thumbnail;
     if (!thumbUrl) {
@@ -385,7 +394,7 @@ function ResultSection(props: ResultSectionProps) {
                   {result.videoSD && (
                     <button
                       class="download-button bg-amber-600 hover:bg-amber-700 w-full p-3 rounded text-white font-bold flex items-center justify-center cursor-pointer transition-colors"
-                      onClick={() => props.onDownloadClick(
+                      onClick={() => handleDownload(
                         `https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(result.videoSD!)}&type=.mp4&title=${props.getSafeFilename()}`,
                         generateFilename(props.getSafeFilename(), 'video')
                       )}
@@ -401,7 +410,7 @@ function ResultSection(props: ResultSectionProps) {
                   {(result.videoHD || result.video_hd) && (
                     <button
                       class="download-button bg-amber-600 hover:bg-amber-700 w-full p-3 rounded text-white font-bold flex items-center justify-center cursor-pointer transition-colors"
-                      onClick={() => props.onDownloadClick(
+                      onClick={() => handleDownload(
                         `https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent((result.videoHD || result.video_hd)!)}&type=.mp4&title=${props.getSafeFilename()}`,
                         generateFilename(props.getSafeFilename(), 'video')
                       )}
@@ -417,7 +426,7 @@ function ResultSection(props: ResultSectionProps) {
                   {result.videoWatermark && (
                     <button
                       class="download-button bg-blue-600 hover:bg-blue-700 w-full p-3 rounded text-white font-bold flex items-center justify-center cursor-pointer transition-colors"
-                      onClick={() => props.onDownloadClick(
+                      onClick={() => handleDownload(
                         `https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(result.videoWatermark!)}&type=.mp4&title=${props.getSafeFilename()}`,
                         generateFilename(props.getSafeFilename(), 'watermark')
                       )}
@@ -433,7 +442,7 @@ function ResultSection(props: ResultSectionProps) {
                   {result.music && (
                     <button
                       class="download-button bg-purple-600 hover:bg-purple-700 w-full p-3 rounded text-white font-bold flex items-center justify-center cursor-pointer transition-colors"
-                      onClick={() => props.onDownloadClick(
+                      onClick={() => handleDownload(
                         `https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(result.music!)}&type=.mp3&title=${props.getSafeFilename()}_audio`,
                         generateFilename(props.getSafeFilename(), 'audio')
                       )}
