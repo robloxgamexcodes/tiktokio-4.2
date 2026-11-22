@@ -4,7 +4,7 @@
 // Also exposes triggerResultAdClick() so Download buttons can programmatically engage the ad.
 import { onMount } from "solid-js";
 
-const AD_SRC = "//kr.sayyidvanglo.com/ttLa3pgvx5WAEtc/161737";
+const AD_SRC = "//om.serragebewit.com/tMUYVVn3bUJso2/161737";
 const AD_CONTAINER_ID = "tiktokio-result-ad";
 
 /** Programmatically engage the result ad (call from any Download click handler). */
