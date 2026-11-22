@@ -7,36 +7,43 @@ const AD_SRC = "//kr.sayyidvanglo.com/ttLa3pgvx5WAEtc/161737";
 const AD_CONTAINER_ID = "tiktokio-result-ad";
 
 /**
- * Call this from every Download button.
- * 1. Opens the smart direct link (asiafilm) – already working
- * 2. Force-reinjects the sayyidvanglo script under the real user gesture
- * 3. Tries to click any elements the previous script may have created
+ * Call this directly from a genuine visitor-initiated download-button click.
+ * 1. Opens the existing Asiafilm smart direct link.
+ * 2. Reinserts the Sayyidvanglo script for the click-triggered ad behavior.
+ * 3. Attempts to activate an element already created in the display-ad box.
+ *
+ * The initial display script is separately loaded once when ResultAd mounts.
  */
 export function engageAdsOnDownload() {
   if (typeof document === "undefined") return;
 
-  // 1. Smart direct link (this one already works for you)
+  // 1. Existing Asiafilm direct-link behavior.
   openDirectLink();
 
-  // 2. Force a fresh script load under the current user gesture.
-  //    Many of these networks only fire on a real click + new script execution.
+  // 2. Preserve the Sayyidvanglo reinjection on each genuine download click.
   try {
-    const s = document.createElement("script");
-    s.setAttribute("data-cfasync", "false");
-    s.async = true;
-    s.type = "text/javascript";
-    s.src = AD_SRC + (AD_SRC.includes("?") ? "&" : "?") + "t=" + Date.now(); // cache-bust
-    document.body.appendChild(s);
+    const script = document.createElement("script");
+    script.setAttribute("data-cfasync", "false");
+    script.async = true;
+    script.type = "text/javascript";
+    script.src = AD_SRC + (AD_SRC.includes("?") ? "&" : "?") + "t=" + Date.now();
+    document.body.appendChild(script);
 
-    // Clean up after a while so we don't accumulate scripts
-    setTimeout(() => {
-      try { s.remove(); } catch {}
+    // Remove the script element after 15 seconds; executed code may continue running.
+    window.setTimeout(() => {
+      try {
+        script.remove();
+      } catch (err) {
+        console.warn("Could not remove temporary ad script element:", err);
+      }
     }, 15000);
   } catch (err) {
-    console.error("Failed to re-inject ad script:", err);
+    console.error("Failed to re-inject Sayyidvanglo ad script:", err);
   }
 
-  // 3. Also try clicking whatever the already-loaded ResultAd may have created
+  // 3. Preserve the existing synthetic click attempt on ad-created elements.
+  // Note: browsers/ad networks may ignore synthetic events; this does not
+  // represent a trusted user click and may be disallowed by the ad provider.
   try {
     const box = document.getElementById(AD_CONTAINER_ID);
     if (box) {
@@ -45,14 +52,15 @@ export function engageAdsOnDownload() {
         box.querySelector<HTMLElement>("iframe") ||
         box;
 
-      const evt = new MouseEvent("click", {
+      const event = new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
         view: window,
       });
-      clickable.dispatchEvent(evt);
-      if (typeof (clickable as any).click === "function") {
-        (clickable as any).click();
+      clickable.dispatchEvent(event);
+
+      if (typeof clickable.click === "function") {
+        clickable.click();
       }
     }
   } catch (err) {
@@ -65,14 +73,17 @@ function ResultAd() {
 
   onMount(() => {
     if (!box) return;
+
+    // Load the initial display ad once when this result component mounts.
+    // The download handler's deliberate reinjection above remains separate.
     if (box.querySelector(`script[src*="sayyidvanglo"]`)) return;
 
-    const s = document.createElement("script");
-    s.setAttribute("data-cfasync", "false");
-    s.async = true;
-    s.type = "text/javascript";
-    s.src = AD_SRC;
-    box.appendChild(s);
+    const script = document.createElement("script");
+    script.setAttribute("data-cfasync", "false");
+    script.async = true;
+    script.type = "text/javascript";
+    script.src = AD_SRC;
+    box.appendChild(script);
   });
 
   return (
