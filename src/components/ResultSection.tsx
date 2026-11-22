@@ -1,6 +1,4 @@
 // src/components/ResultSection.tsx
-import AdSlot from "./AdSlot";
-import { onDownloadAction } from "./adRefresh";
 import { openDirectLink } from "./directLink";
 
 interface ResultSectionProps {
@@ -117,7 +115,6 @@ function ResultSection(props: ResultSectionProps) {
       document.body.appendChild(link);
       link.click();
       setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(objectUrl); }, 1000);
-      onDownloadAction(); // ad refresh every 5th–6th download click
     } catch (err) {
       console.error("Avatar download failed:", err);
       alert(`Could not download the profile picture.\n${(err as Error).message}`);
@@ -160,7 +157,6 @@ function ResultSection(props: ResultSectionProps) {
       document.body.appendChild(link);
       link.click();
       setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(objectUrl); }, 1000);
-      onDownloadAction(); // ad refresh every 5th–6th download click
     } catch (err) {
       console.error("Thumbnail download failed:", err);
       alert(`Could not download the thumbnail.\n${(err as Error).message}`);
@@ -378,8 +374,6 @@ function ResultSection(props: ResultSectionProps) {
                   </button>
                 )}
 
-                {/* Ad – centered, right after the Download Profile Picture button */}
-                {avatarUrl && <AdSlot id="gpt-passback-result" />}
 
                 {/* ── Download Buttons ─────────────────────────────────────────── */}
                 <div class="space-y-2">

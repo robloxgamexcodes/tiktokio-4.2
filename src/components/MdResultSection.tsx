@@ -1,4 +1,3 @@
-import AdSlot from "./AdSlot";
 /** @jsxImportSource solid-js */
 // src/components/ResultSection.tsx
 
@@ -235,8 +234,6 @@ function ResultSection(props: ResultSectionProps) {
 
       </div>
 
-      {/* Ad – centered, below the result card */}
-      <AdSlot id="gpt-passback-result-md" />
     </div>
   );
 }

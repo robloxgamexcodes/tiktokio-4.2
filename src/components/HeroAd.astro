@@ -1,20 +1,35 @@
 ---
-// Centered GPT ad for hero sections.
-// Visible only while the URL input form is on screen; hidden once results are shown.
+// 970x90 Google Ad Manager (GPT) banner, placed right after the URL input field in hero sections.
+// - Shown only while the input form is on screen; hidden as soon as the result section replaces it.
+// - Desktop only (>= 1024px): a 970px-wide banner cannot fit on smaller screens.
+// - NOT used in any result section.
 ---
-<div id="hero-ad-wrapper" class="flex justify-center items-center w-full mt-4 mb-2">
-  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous" is:inline></script>
-  <div id="gpt-passback-hero" style="min-width:300px;min-height:250px;">
-    <script is:inline>
-      window.googletag = window.googletag || {cmd: []};
-      googletag.cmd.push(function() {
-        googletag.defineSlot('/213794966,23337107551/display-2026/tiktokio.com_336x280', [[1, 1], [300, 250], [320, 250], [336, 280]], 'gpt-passback-hero').addService(googletag.pubads());
-        googletag.enableServices();
-        googletag.display('gpt-passback-hero');
-      });
-    </script>
-  </div>
+<div id="hero-ad-wrapper" class="hidden lg:flex justify-center items-center w-full mt-4 mb-2">
+  <!-- /21857590943,23337107551/rasuplus_tiktokio.cam/rasuplus_tiktokio.cams_970x90 -->
+  <div id="div-gpt-ad-1795001676021-0" style="min-width:970px;min-height:90px;"></div>
 </div>
+
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous" is:inline></script>
+<script is:inline>
+  window.googletag = window.googletag || { cmd: [] };
+
+  // Request the ad only on screens wide enough to show a 970px banner.
+  if (window.innerWidth >= 1024) {
+    googletag.cmd.push(function () {
+      googletag
+        .defineSlot(
+          '/21857590943,23337107551/rasuplus_tiktokio.cam/rasuplus_tiktokio.cams_970x90',
+          [970, 90],
+          'div-gpt-ad-1795001676021-0'
+        )
+        .addService(googletag.pubads());
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      googletag.enableServices();
+      googletag.display('div-gpt-ad-1795001676021-0');
+    });
+  }
+</script>
 
 <script is:inline>
   // Show the hero ad only on the input screen, never on the result screen.

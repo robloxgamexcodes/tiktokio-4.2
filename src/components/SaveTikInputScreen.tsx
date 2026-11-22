@@ -2,7 +2,6 @@ import { toast, Toaster } from "solid-toast";
 import { createSignal, onCleanup, Show } from "solid-js";
 import InputSection from "./SaveTikInputSection";
 import ResultSection from "./SaveTikResultSection";
-import { onDownloadAction } from "./adRefresh";
 import { openDirectLink } from "./directLink";
 import { startDownload } from "./startDownload";
 
@@ -339,7 +338,6 @@ function InputScreen({}: Props) {
   // Function to handle download button click
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
     openDirectLink(); // direct link opens on every download click (must run inside the click)
-    onDownloadAction(); // ad refresh every 5th–6th download click
     setPendingDownloadUrl(downloadUrl);
     setPendingFilename(filename);
     setShowModal(true);
