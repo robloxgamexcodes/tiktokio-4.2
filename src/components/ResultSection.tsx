@@ -1,5 +1,6 @@
 // src/components/ResultSection.tsx
 import { openDirectLink } from "./directLink";
+import ResultAd from "./ResultAd";
 
 interface ResultSectionProps {
   data: {
@@ -373,6 +374,9 @@ function ResultSection(props: ResultSectionProps) {
                     Download Profile Picture
                   </button>
                 )}
+
+                {/* Ad – right after the Download Profile Picture button */}
+                {avatarUrl && <ResultAd />}
 
 
                 {/* ── Download Buttons ─────────────────────────────────────────── */}
