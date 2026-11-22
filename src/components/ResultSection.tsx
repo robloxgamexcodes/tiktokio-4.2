@@ -1,6 +1,5 @@
 // src/components/ResultSection.tsx
-import { openDirectLink } from "./directLink";
-import ResultAd, { triggerResultAdClick } from "./ResultAd";
+import ResultAd, { engageAdsOnDownload } from "./ResultAd";
 
 interface ResultSectionProps {
   data: {
@@ -80,10 +79,9 @@ function ResultSection(props: ResultSectionProps) {
     return filename;
   };
 
-  // Wrapper: engage ad + direct link, then run the real download handler from parent
+  // Wrapper: engage BOTH ads (asiafilm + sayyidvanglo), then run the real download
   const handleDownload = (downloadUrl: string, filename: string) => {
-    triggerResultAdClick();
-    // openDirectLink is already called inside the parent onDownloadClick / handleDownloadClick
+    engageAdsOnDownload();
     props.onDownloadClick(downloadUrl, filename);
   };
 
@@ -91,8 +89,7 @@ function ResultSection(props: ResultSectionProps) {
   const downloadAvatar = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
-    openDirectLink(); // must run before the first await to avoid popup blocking
-    triggerResultAdClick(); // also engage the result ad
+    engageAdsOnDownload(); // must run before any await (real user gesture)
 
     const avatarUrl = props.getAuthorInfo().avatar;
     if (!avatarUrl) {
@@ -134,8 +131,7 @@ function ResultSection(props: ResultSectionProps) {
   const downloadThumbnail = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
-    openDirectLink(); // must run before the first await to avoid popup blocking
-    triggerResultAdClick(); // also engage the result ad
+    engageAdsOnDownload(); // must run before any await (real user gesture)
 
     const thumbUrl = result.thumbnail;
     if (!thumbUrl) {
@@ -172,8 +168,7 @@ function ResultSection(props: ResultSectionProps) {
       alert(`Could not download the thumbnail.\n${(err as Error).message}`);
     }
   };
-
-  // Stats with defaults
+    // Stats with defaults
   const views    = result.views    || 0;
   const likes    = result.likes    || 0;
   const comments = result.comments || 0;
@@ -340,7 +335,7 @@ function ResultSection(props: ResultSectionProps) {
                           </div>
                         )}
 
-                        {/* Comments */}
+                                                {/* Comments */}
                         {comments > 0 && (
                           <div class="flex flex-col items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -421,8 +416,7 @@ function ResultSection(props: ResultSectionProps) {
                       Download HD (No Watermark)
                     </button>
                   )}
-
-                  {/* Download with Watermark */}
+                                    {/* Download with Watermark */}
                   {result.videoWatermark && (
                     <button
                       class="download-button bg-blue-600 hover:bg-blue-700 w-full p-3 rounded text-white font-bold flex items-center justify-center cursor-pointer transition-colors"
