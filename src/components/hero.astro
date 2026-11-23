@@ -1,5 +1,4 @@
 ---
-import HeroAd from "./HeroAd.astro";
 import InputScreen from "./InputScreen";
 import { useTranslations } from "../i18n/utils";
 
@@ -15,7 +14,6 @@ const t = useTranslations("en");
    
 
         <InputScreen client:only="solid-js" />
-        <HeroAd />
       </div>
     </div>
   </div>

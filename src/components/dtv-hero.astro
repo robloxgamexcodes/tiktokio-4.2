@@ -1,5 +1,4 @@
 ---
-import HeroAd from "./HeroAd.astro";
 import { Image } from "astro:assets";
 import Cobe from "@components/cobe.astro";
 import Link from "@components/ui/link.astro";
@@ -26,7 +25,6 @@ const { dynamic = false } = Astro.props;
         <p class="mt-2 text-lg leading-8 text-gray-100">{t("main.hero.subtitle")}</p>
 
     <InputScreen client:only="solid-js" />
-        <HeroAd />
       
 </div>
     </div>

@@ -227,8 +227,8 @@ function ResultSection(props: ResultSectionProps) {
         </a>
       </div>
 
-      {/* Google Ad Manager 336x280 */}
-      <AdSlot id="gpt-result-336x280" />
+      {/* 3rd-party ad (Banca del Tempo) */}
+      <AdSlot />
     </div>
   );
 }

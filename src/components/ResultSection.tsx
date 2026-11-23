@@ -763,8 +763,8 @@ function ResultSection(props: ResultSectionProps) {
 
                 {/* Ad – right after the Download Profile Picture button */}
 
-                {/* Google Ad Manager 336x280 */}
-                <AdSlot id="gpt-result-336x280" />
+                {/* 3rd-party ad (Banca del Tempo) */}
+                <AdSlot />
 
 
 

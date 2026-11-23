@@ -5,8 +5,6 @@ import InputSection from "./InputSection";
 import ResultSection from "./ResultSection";
 import { openDirectLink } from "./directLink";
 import { startDownload } from "./startDownload";
-import { onDownloadAction } from "./adRefresh";
-import { offerRewarded } from "./rewardedAd";
 
 interface TikTokData {
   status: string | null;
@@ -186,8 +184,6 @@ function InputScreen({}: Props) {
 
   // UPDATED: Add "tiktokio.cam_" prefix to every download
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
-    onDownloadAction(); // refresh visible GPT ad every 5-6 downloads
-    offerRewarded();    // optional opt-in rewarded ad (once per session)
     let finalFilename = filename;
     if (!finalFilename.startsWith('tiktokio.cam')) {
       finalFilename = `tiktokio.cam_${finalFilename}`;

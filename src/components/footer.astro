@@ -248,28 +248,6 @@ const websiteSchema = {
 			</a>
 		</div>
 		
-		<!-- Footer Ad (Google Ad Manager) -->
-		<!-- NOTE: gpt.js must be loaded once in <head> of src/layouts/Layout.astro:
-		     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script> -->
-		<div class="mt-6 flex justify-center">
-			<div id="gpt-footer-sticky" style="min-height:50px;">
-				<script is:inline>
-					window.googletag = window.googletag || { cmd: [] };
-					googletag.cmd.push(function () {
-						googletag
-							.defineSlot(
-								'/213794966,23337107551/display-2026/tiktokio.com_footersticky',
-								[[320, 50], [1, 1], [970, 90], [728, 90]],
-								'gpt-footer-sticky'
-							)
-							.addService(googletag.pubads());
-						googletag.enableServices();
-						googletag.display('gpt-footer-sticky');
-					});
-				</script>
-			</div>
-		</div>
-		
 		<!-- Copyright -->
 		<div class="mt-4 text-center">
 			<span class="text-sm tracking-wide text-gray-500 dark:text-white">

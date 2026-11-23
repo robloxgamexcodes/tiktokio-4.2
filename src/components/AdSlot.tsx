@@ -1,48 +1,34 @@
 // src/components/AdSlot.tsx
-// Reusable GPT ad slot for Solid components (inline <script> tags do not run inside JSX).
+// Result-section ad slot (3rd-party network). Solid/JSX does not execute inline <script> tags,
+// so the network script is injected from onMount. The container id MUST stay exactly as below,
+// because the ad script looks it up by id.
 import { onMount, onCleanup } from "solid-js";
-import { registerAdSlot } from "./adRefresh";
-import { initRewarded } from "./rewardedAd";
 
-const AD_UNIT = "/213794966,23337107551/display-2026/tiktokio.com_336x280";
-const GPT_SRC = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+const CONTAINER_ID = "container-531da32ec3fcb205a3490d7e5bc1f538";
+const AD_SRC = "https://bancadeltempoidea.org/21/531da32ec3fcb205a3490d7e5bc1f538";
 
-function AdSlot(props: { id: string }) {
-  let slot: any = null;
-  let unregister: (() => void) | null = null;
+function AdSlot() {
+  let wrapper: HTMLDivElement | undefined;
+  let script: HTMLScriptElement | null = null;
 
   onMount(() => {
-    initRewarded(); // result screen is showing: request the opt-in rewarded ad
-    const w = window as any;
-    w.googletag = w.googletag || { cmd: [] };
-
-    if (!document.querySelector(`script[src="${GPT_SRC}"]`)) {
-      const s = document.createElement("script");
-      s.async = true;
-      s.src = GPT_SRC;
-      s.crossOrigin = "anonymous";
-      document.head.appendChild(s);
-    }
-
-    w.googletag.cmd.push(() => {
-      slot = w.googletag
-        .defineSlot(AD_UNIT, [[1, 1], [300, 250], [320, 250], [336, 280]], props.id)
-        ?.addService(w.googletag.pubads());
-      w.googletag.enableServices();
-      w.googletag.display(props.id);
-      if (slot) unregister = registerAdSlot(slot, props.id);
-    });
+    if (!wrapper) return;
+    // Fresh <script> element each time the result screen mounts, so the ad re-runs on every result.
+    script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = AD_SRC;
+    wrapper.appendChild(script);
   });
 
   onCleanup(() => {
-    const w = window as any;
-    unregister?.();
-    if (slot && w.googletag?.destroySlots) w.googletag.cmd.push(() => w.googletag.destroySlots([slot]));
+    script?.remove();
+    script = null;
   });
 
   return (
-    <div class="flex justify-center items-center w-full my-4">
-      <div id={props.id} style={{ "min-width": "300px", "min-height": "250px" }} />
+    <div ref={wrapper} class="flex justify-center items-center w-full my-4">
+      <div id={CONTAINER_ID}></div>
     </div>
   );
 }
