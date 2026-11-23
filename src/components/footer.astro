@@ -60,7 +60,6 @@ const websiteSchema = {
 			<li role="listitem">
 				<a href={localizePath("/privacy-policy")} class="duration-300 hover:text-gray-900 dark:hover:text-gray-100">Privacy Policy</a>
 			</li>
-			</li>
 			<li role="listitem">
 				<a href={localizePath("/savetik-download-tiktok-video-without-watermark-free")} class="duration-300 hover:text-gray-900 dark:hover:text-gray-100">SaveTik</a>
 			</li>
@@ -210,17 +209,7 @@ const websiteSchema = {
 			gtag('js', new Date());
 			gtag('config', 'G-C33KK2QQG5');
 		</script>
-		<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
-<div id="gpt-passback">
-  <script>
-    window.googletag = window.googletag || {cmd: []};
-    googletag.cmd.push(function() {
-    googletag.defineSlot('/213794966,23337107551/display-2026/tiktokio.com_footersticky', [[320, 50], [1, 1], [970, 90], [728, 90]], 'gpt-passback').addService(googletag.pubads());
-    googletag.enableServices();
-    googletag.display('gpt-passback');
-    });
-  </script>
-</div>
+		
 		<!-- Social Media Links -->
 		<div class="m-auto mt-4 flex w-max items-center justify-between space-x-4 text-gray-500 dark:text-white">
 			<a class="duration-300 hover:text-gray-900 dark:hover:text-gray-100" 
@@ -257,6 +246,28 @@ const websiteSchema = {
 					</g>
 				</svg>
 			</a>
+		</div>
+		
+		<!-- Footer Ad (Google Ad Manager) -->
+		<!-- NOTE: gpt.js must be loaded once in <head> of src/layouts/Layout.astro:
+		     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script> -->
+		<div class="mt-6 flex justify-center">
+			<div id="gpt-footer-sticky" style="min-height:50px;">
+				<script is:inline>
+					window.googletag = window.googletag || { cmd: [] };
+					googletag.cmd.push(function () {
+						googletag
+							.defineSlot(
+								'/213794966,23337107551/display-2026/tiktokio.com_footersticky',
+								[[320, 50], [1, 1], [970, 90], [728, 90]],
+								'gpt-footer-sticky'
+							)
+							.addService(googletag.pubads());
+						googletag.enableServices();
+						googletag.display('gpt-footer-sticky');
+					});
+				</script>
+			</div>
 		</div>
 		
 		<!-- Copyright -->
