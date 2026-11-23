@@ -1,6 +1,6 @@
 // src/components/ResultSection.tsx
 
-import ResultAd, { engageAdsOnDownload } from "./ResultAd";
+import { engageAdsOnDownload } from "./ResultAd";
 import AdSlot from "./AdSlot";
 
 
@@ -161,7 +161,7 @@ function ResultSection(props: ResultSectionProps) {
 
 
 
-  // Wrapper: engage BOTH ads (asiafilm + sayyidvanglo), then run the real download
+  // Wrapper: open the asiafilm direct link, then run the real download
 
   const handleDownload = (downloadUrl: string, filename: string) => {
 
@@ -762,8 +762,6 @@ function ResultSection(props: ResultSectionProps) {
 
 
                 {/* Ad – right after the Download Profile Picture button */}
-
-                <ResultAd />
 
                 {/* Google Ad Manager 336x280 */}
                 <AdSlot id="gpt-result-336x280" />
