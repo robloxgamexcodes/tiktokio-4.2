@@ -1,0 +1,23 @@
+---
+// Reusable Google Ad Manager (GPT) slot for .astro files.
+// gpt.js is loaded once in src/layouts/Layout.astro. Give every slot on a page its own id.
+interface Props {
+  id: string;
+  path: string;
+  sizes: number[][];
+  minHeight?: number;
+  class?: string;
+}
+const { id, path, sizes, minHeight = 0, class: className = "" } = Astro.props;
+---
+<div class={className}>
+  <div id={id} style={`min-height:${minHeight}px;`}></div>
+</div>
+<script is:inline define:vars={{ id, path, sizes }}>
+  window.googletag = window.googletag || { cmd: [] };
+  googletag.cmd.push(function () {
+    googletag.defineSlot(path, sizes, id).addService(googletag.pubads());
+    googletag.enableServices();
+    googletag.display(id);
+  });
+</script>

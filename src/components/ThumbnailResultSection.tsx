@@ -1,4 +1,5 @@
 // src/components/ResultSection.tsx
+import AdSlot from "./AdSlot";
 interface ResultSectionProps {
   data: any; // TikTokData | null
   getVideoUrl: () => string;
@@ -247,6 +248,9 @@ function ResultSection(props: ResultSectionProps) {
           </div>
         </div>
       </div>
+
+      {/* Google Ad Manager 336x280 */}
+      <AdSlot id="gpt-result-336x280" />
     </div>
   );
 }

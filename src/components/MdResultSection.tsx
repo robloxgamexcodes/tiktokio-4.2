@@ -1,4 +1,5 @@
 /** @jsxImportSource solid-js */
+import AdSlot from "./AdSlot";
 // src/components/ResultSection.tsx
 
 interface ResultSectionProps {
@@ -234,6 +235,9 @@ function ResultSection(props: ResultSectionProps) {
 
       </div>
 
+
+      {/* Google Ad Manager 336x280 */}
+      <AdSlot id="gpt-result-336x280" />
     </div>
   );
 }
