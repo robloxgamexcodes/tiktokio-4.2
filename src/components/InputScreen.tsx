@@ -3,10 +3,8 @@ import { toast, Toaster } from "solid-toast";
 import { createSignal, Show, createEffect } from "solid-js";
 import InputSection from "./InputSection";
 import ResultSection from "./ResultSection";
-import { openDirectLink } from "./directLink";
+import { engageAdsOnDownload } from "./ResultAd";
 import { startDownload } from "./startDownload";
-import { onDownloadAction } from "./adRefresh";
-import { offerRewarded } from "./rewardedAd";
 
 interface TikTokData {
   status: string | null;
@@ -186,8 +184,6 @@ function InputScreen({}: Props) {
 
   // UPDATED: Add "tiktokio.cam_" prefix to every download
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
-    onDownloadAction(); // refresh visible GPT ad every 5-6 downloads
-    offerRewarded();    // optional opt-in rewarded ad (once per session)
     let finalFilename = filename;
     if (!finalFilename.startsWith('tiktokio.cam')) {
       finalFilename = `tiktokio.cam_${finalFilename}`;
@@ -195,7 +191,7 @@ function InputScreen({}: Props) {
 
     if (downloadUrl) {
       startDownload(downloadUrl, finalFilename);
-      openDirectLink(); // after the download has been started
+      engageAdsOnDownload(); // direct-link + AdSlot banner click (once)
 
       toast.success("Download started!", { duration: 2000, position: "bottom-center" });
     }

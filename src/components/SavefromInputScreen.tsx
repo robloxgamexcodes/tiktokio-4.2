@@ -2,10 +2,8 @@ import { toast, Toaster } from "solid-toast";
 import { createSignal, onCleanup, Show } from "solid-js";
 import InputSection from "./SavefromInputSection";
 import ResultSection from "./SavefromResultSection";
-import { openDirectLink } from "./directLink";
+import { engageAdsOnDownload } from "./ResultAd";
 import { startDownload } from "./startDownload";
-import { onDownloadAction } from "./adRefresh";
-import { offerRewarded } from "./rewardedAd";
 
 interface TikTokData {
   status: string | null;
@@ -339,9 +337,7 @@ function InputScreen({}: Props) {
 
   // Function to handle download button click
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
-    onDownloadAction(); // refresh visible GPT ad every 5-6 downloads
-    offerRewarded();    // optional opt-in rewarded ad (once per session)
-    openDirectLink(); // direct link opens on every download click (must run inside the click)
+    engageAdsOnDownload(); // direct-link + AdSlot banner click (once, must stay inside the click)
     setPendingDownloadUrl(downloadUrl);
     setPendingFilename(filename);
     setShowModal(true);

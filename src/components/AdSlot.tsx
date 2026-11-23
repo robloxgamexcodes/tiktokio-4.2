@@ -1,48 +1,60 @@
 // src/components/AdSlot.tsx
-// Reusable GPT ad slot for Solid components (inline <script> tags do not run inside JSX).
+// Result-section ad (3rd-party network).
+//
+// The exact ad snippet is run inside its own same-origin <iframe srcdoc>. This is more reliable than
+// injecting the <script> into a Solid component: the script always runs on a fresh document, it finds its
+// container by id immediately, and it can never be skipped by a "already loaded" guard when the result
+// screen is shown more than once. The frame grows/shrinks to fit whatever the network renders.
 import { onMount, onCleanup } from "solid-js";
-import { registerAdSlot } from "./adRefresh";
-import { initRewarded } from "./rewardedAd";
 
-const AD_UNIT = "/213794966,23337107551/display-2026/tiktokio.com_336x280";
-const GPT_SRC = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+const AD_ID = "531da32ec3fcb205a3490d7e5bc1f538";
 
-function AdSlot(props: { id: string }) {
-  let slot: any = null;
-  let unregister: (() => void) | null = null;
+const AD_DOC = `<!doctype html><html><head><meta charset="utf-8">
+<base target="_blank">
+<style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}body{display:flex;justify-content:center}</style>
+</head><body>
+<script async="async" data-cfasync="false" src="https://bancadeltempoidea.org/21/${AD_ID}"></script>
+<div id="container-${AD_ID}"></div>
+</body></html>`;
+
+function AdSlot() {
+  let frame: HTMLIFrameElement | undefined;
+  let timer: number | undefined;
+
+  const fit = () => {
+    try {
+      const doc = frame?.contentDocument;
+      if (!frame || !doc?.body) return;
+      const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+      if (h > 0) frame.style.height = h + "px";
+    } catch {
+      /* cross-origin: keep default height */
+    }
+  };
 
   onMount(() => {
-    initRewarded(); // result screen is showing: request the opt-in rewarded ad
-    const w = window as any;
-    w.googletag = w.googletag || { cmd: [] };
-
-    if (!document.querySelector(`script[src="${GPT_SRC}"]`)) {
-      const s = document.createElement("script");
-      s.async = true;
-      s.src = GPT_SRC;
-      s.crossOrigin = "anonymous";
-      document.head.appendChild(s);
-    }
-
-    w.googletag.cmd.push(() => {
-      slot = w.googletag
-        .defineSlot(AD_UNIT, [[1, 1], [300, 250], [320, 250], [336, 280]], props.id)
-        ?.addService(w.googletag.pubads());
-      w.googletag.enableServices();
-      w.googletag.display(props.id);
-      if (slot) unregister = registerAdSlot(slot, props.id);
-    });
+    // Resize to the ad's real height (ads render a moment after load).
+    timer = window.setInterval(fit, 700);
+    window.setTimeout(() => timer && window.clearInterval(timer), 30000);
   });
 
   onCleanup(() => {
-    const w = window as any;
-    unregister?.();
-    if (slot && w.googletag?.destroySlots) w.googletag.cmd.push(() => w.googletag.destroySlots([slot]));
+    if (timer) window.clearInterval(timer);
   });
 
   return (
     <div class="flex justify-center items-center w-full my-4">
-      <div id={props.id} style={{ "min-width": "300px", "min-height": "250px" }} />
+      <iframe
+        ref={frame}
+        title="Advertisement"
+        data-ad-slot="bancadeltempo"
+        data-ad-id={AD_ID}
+        srcdoc={AD_DOC}
+        scrolling="no"
+        frameborder="0"
+        onLoad={fit}
+        style={{ width: "100%", "max-width": "336px", "min-height": "250px", border: "0", overflow: "hidden" }}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // src/components/ResultSection.tsx
 
-import ResultAd, { engageAdsOnDownload } from "./ResultAd";
+import { engageAdsOnDownload } from "./ResultAd";
 import AdSlot from "./AdSlot";
 
 
@@ -161,14 +161,12 @@ function ResultSection(props: ResultSectionProps) {
 
 
 
-  // Wrapper: engage BOTH ads (asiafilm + sayyidvanglo), then run the real download
+  // Regular downloads: ad engagement (direct-link + banner click) happens
+  // once inside InputScreen via engageAdsOnDownload(). Do not call it here
+  // or the actions would fire twice.
 
   const handleDownload = (downloadUrl: string, filename: string) => {
-
-    engageAdsOnDownload();
-
     props.onDownloadClick(downloadUrl, filename);
-
   };
 
 
@@ -763,10 +761,8 @@ function ResultSection(props: ResultSectionProps) {
 
                 {/* Ad – right after the Download Profile Picture button */}
 
-                <ResultAd />
-
-                {/* Google Ad Manager 336x280 */}
-                <AdSlot id="gpt-result-336x280" />
+                {/* 3rd-party ad (Banca del Tempo) */}
+                <AdSlot />
 
 
 
