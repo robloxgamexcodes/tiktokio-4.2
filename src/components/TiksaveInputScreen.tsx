@@ -4,6 +4,8 @@ import InputSection from "./TiksaveInputSection";
 import ResultSection from "./TiksaveResultSection";
 import { openDirectLink } from "./directLink";
 import { startDownload } from "./startDownload";
+import { onDownloadAction } from "./adRefresh";
+import { offerRewarded } from "./rewardedAd";
 
 interface TikTokData {
   status: string | null;
@@ -337,6 +339,8 @@ function InputScreen({}: Props) {
 
   // Function to handle download button click
   const handleDownloadClick = (downloadUrl: string, filename: string) => {
+    onDownloadAction(); // refresh visible GPT ad every 5-6 downloads
+    offerRewarded();    // optional opt-in rewarded ad (once per session)
     openDirectLink(); // direct link opens on every download click (must run inside the click)
     setPendingDownloadUrl(downloadUrl);
     setPendingFilename(filename);
