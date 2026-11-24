@@ -83,6 +83,9 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://lift-off.sh/p/tiktokio" target="_blank" title="LiftOff launch badge"><img src="https://lift-off.sh/images/badges/badgeLaunchedLight.webp" alt="Tiktokio on LiftOff Badge" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://launchboard.dev" target="_blank" rel="noopener"><img src="https://launchboard.dev/launchboard-badge.png" alt="Launched on LaunchBoard - Product Launch Platform" width="240" height="60" /></a>`,
   }
 
   
