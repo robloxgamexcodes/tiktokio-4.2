@@ -129,30 +129,6 @@ const pathWithoutLang = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|
    
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6af85fca72f6053e0a1bed62&product=sop"  async="async"></script>
 
-    <!-- Google Ad Manager (GPT): load gpt.js ONCE for the whole site.
-         Slots are defined next to their markup (HeroAd.astro, footer.astro, AdSlot.tsx). -->
-    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous" is:inline></script>
-    <script is:inline>
-      window.googletag = window.googletag || { cmd: [] };
-    </script>
-
-    {variant !== '404' && (
-      <script is:inline>
-        // Google Ad Manager interstitial (out-of-page). Skipped silently if the ad unit is not an interstitial unit.
-        googletag.cmd.push(function () {
-          var interstitial = googletag.defineOutOfPageSlot(
-            '/213794966,23337107551/display-2026/tiktokio.com_Interstitial',
-            googletag.enums.OutOfPageFormat.INTERSTITIAL
-          );
-          if (interstitial) {
-            interstitial.addService(googletag.pubads());
-            googletag.enableServices();
-            googletag.display(interstitial);
-          }
-        });
-      </script>
-    )}
-
     <slot name="head" />
   </head>
 
