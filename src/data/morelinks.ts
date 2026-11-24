@@ -80,5 +80,11 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://aitrovex.com/" target="_blank"><img src="https://aitrovex.com/badge-listed-light.svg" alt="Listed on AITroveX" style="height: 36px; width: 120px;" /></a>`,
+  },
+  {
+    html: `<a href="https://lift-off.sh/p/tiktokio" target="_blank" title="LiftOff launch badge"><img src="https://lift-off.sh/images/badges/badgeLaunchedLight.webp" alt="Tiktokio on LiftOff Badge" width="120" height="36" /></a>`,
   }
+
+  
+
 ];
