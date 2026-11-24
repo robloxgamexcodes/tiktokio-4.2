@@ -89,6 +89,9 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://www.launchvault.dev" target="_blank" title="Featured on LaunchVault"><img src="https://www.launchvault.dev/images/badges/launch-valut-badge.svg" alt="Featured on LaunchVault" style="width: 195px; height: auto;" /></a>`,
+  },
+  {
+    html: `<a href="https://openhunts.com" target="_blank" title="OpenHunts Club"><img alt="OpenHunts Club Member" height="105" src="https://cdn.openhunts.com/badges/club.webp" style="width: 195px; height: auto;" width="486"></a>`,
   }
 
 ];
