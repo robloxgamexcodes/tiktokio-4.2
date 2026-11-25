@@ -108,6 +108,10 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://startupog.com" target="_blank" rel="noopener"><img src="https://startupog.com/startupog-badge-wide.webp" alt="Featured on StartupOG" width="120" height="36" /></a>`
+  },
+
+  {
+    html: `<a href="https://blackhawkegames.com/?utm_source=badge" target="_blank" rel="noopener"><img src="https://blackhawkegames.com/brand/blackhawkegames/badge-light.svg" alt="Featured on BlackHawkGame" width="120" height="36" /></a>`,
   }
 
 ];
