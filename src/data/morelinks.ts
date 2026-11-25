@@ -85,13 +85,18 @@ export const featuredLinks: FeaturedLink[] = [
     html: `<a href="https://lift-off.sh/p/tiktokio" target="_blank" title="LiftOff launch badge"><img src="https://lift-off.sh/images/badges/badgeLaunchedLight.webp" alt="Tiktokio on LiftOff Badge" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://launchboard.dev" target="_blank" rel="noopener"><img src="https://launchboard.dev/launchboard-badge.png" alt="Launched on LaunchBoard - Product Launch Platform" width="136" height="36" /></a>`,
+    html: `<a href="https://launchboard.dev" target="_blank" rel="noopener"><img src="https://launchboard.dev/launchboard-badge.png" alt="Launched on LaunchBoard - Product Launch Platform" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://www.launchvault.dev" target="_blank" title="Featured on LaunchVault"><img src="https://www.launchvault.dev/images/badges/launch-valut-badge.svg" alt="Featured on LaunchVault" style="width: 195px; height: auto;" /></a>`,
+    html: `<a href="https://www.launchvault.dev" target="_blank" title="Featured on LaunchVault"><img src="https://www.launchvault.dev/images/badges/launch-valut-badge.svg" alt="Featured on LaunchVault" style="width: 120px; height: 36;" /></a>`,
   },
   {
-    html: `<a href="https://openhunts.com" target="_blank" title="OpenHunts Club"><img alt="OpenHunts Club Member" height="105" src="https://cdn.openhunts.com/badges/club.webp" style="width: 195px; height: auto;" width="486"></a>`,
+    html: `<a href="https://openhunts.com" target="_blank" title="OpenHunts Club"><img alt="OpenHunts Club Member" height="36" src="https://cdn.openhunts.com/badges/club.webp" style="width: 120px; height: 36px;" width="120"></a>`,
+  },
+  {
+    html: `<a href="https://submityourstartup.now/s/tiktokio" target="_blank" rel="noopener"><img src="https://submityourstartup.now/s/tiktokio/badge.png" alt="TikTokio: launched on Submit Your Startup" width="120" height="36" /></a>`,
   }
+
+
 
 ];
