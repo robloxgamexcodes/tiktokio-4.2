@@ -105,6 +105,9 @@ export const featuredLinks: FeaturedLink[] = [
 
   {
     html: `<a href="https://www.webprojectlist.com/" target="_blank" rel="noopener"><img src="https://www.webprojectlist.com/static/backlink/webprojectlist_name_logo.6a3366e98900.webp" alt="WebProjectList Badge" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://startupog.com" target="_blank" rel="noopener"><img src="https://startupog.com/startupog-badge-wide.webp" alt="Featured on StartupOG" width="120" height="36" /></a>`
   }
 
 ];
