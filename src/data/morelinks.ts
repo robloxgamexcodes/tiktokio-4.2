@@ -95,8 +95,9 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://submityourstartup.now/s/tiktokio" target="_blank" rel="noopener"><img src="https://submityourstartup.now/s/tiktokio/badge.png" alt="TikTokio: launched on Submit Your Startup" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://bigkr.com" target="_blank"><img src="https://bigkr.com/badge/badge_light.svg" alt="Featured on BigKr" width="136" height="36" /></a>`,
   }
-
-
 
 ];
