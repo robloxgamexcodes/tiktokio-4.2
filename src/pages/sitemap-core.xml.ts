@@ -29,6 +29,12 @@ export const GET: APIRoute = async () => {
     { path: '/terms-of-service/', priority: 0.3, changefreq: 'yearly' },
   ];
 
+  // English-only pages (no localized versions yet)
+  const enOnlyPages = [
+    { path: '/tiktok-mp3-downloader/', priority: 0.8, changefreq: 'weekly' },
+    { path: '/tiktokio-apk-app/', priority: 0.6, changefreq: 'monthly' },
+  ];
+
   const lastmod = new Date().toISOString();
   
   const urls = locales.flatMap(locale => 
@@ -39,6 +45,8 @@ export const GET: APIRoute = async () => {
       return { url, priority: page.priority, changefreq: page.changefreq };
     })
   );
+
+  enOnlyPages.forEach(page => urls.push({ url: `https://tiktokio.cam${page.path}`, priority: page.priority, changefreq: page.changefreq }));
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

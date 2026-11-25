@@ -48,6 +48,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
+  // 301: one canonical URL per page. Paths without a trailing slash go to the slash version
+  // (trailingSlash: 'always'), so /tiktok-downloader and /tiktok-downloader/ stop being indexed separately.
+  const lastSegment = pathname.split('/').pop() || '';
+  if (
+    (context.request.method === 'GET' || context.request.method === 'HEAD') &&
+    !pathname.endsWith('/') &&
+    !lastSegment.includes('.') &&
+    !/^(\/[a-z]{2})?\/404$/.test(pathname) // /404 is redirected the other way in astro.config.mjs
+  ) {
+    return context.redirect(`${pathname}/${url.search}`, 301);
+  }
+
   const pathSegments = pathname.split('/').filter(Boolean);
   const firstSegment = pathSegments[0] || '';
   const nonDefaultLocales = supportedLocales.filter(l => l !== defaultLocale);

@@ -1,0 +1,90 @@
+---
+// English-only landing page for "tiktok mp3 downloader" intent (new, Nov 2026).
+// Accuracy note: the tool shows a "Download Audio Only" button when TikTok exposes the video's sound
+// (see ResultSection.tsx). No bitrate or conversion claims are made here on purpose.
+import Layout from "../layouts/Layout.astro";
+import ToolHero from "../components/tool-hero.astro";
+import ContentPage from "../components/content-page.astro";
+
+const title = "TikTok to MP3 – Save TikTok Audio | TikTokio";
+const description = "Paste a public TikTok link and save the sound as an MP3 file. Free, no app or login, works on iPhone, Android and PC.";
+const keywords = "tiktok mp3 downloader, tiktok to mp3, tiktok audio download, tiktokio mp3, save tiktok sound";
+
+const sections = [
+  {
+    h2: "TikTok to MP3: what TikTokio does",
+    paragraphs: [
+      "Paste the link of a public TikTok video into the box above and TikTokio loads it. When TikTok provides the video’s sound, a <strong>Download Audio Only</strong> button appears next to the video download and saves the sound as an MP3 file.",
+      "It is meant for personal use: keeping a sound you like for offline listening, checking what a creator used, or saving a voice-over from a video you made yourself.",
+    ],
+  },
+  {
+    h2: "How to convert a TikTok video to MP3 in 3 steps",
+    steps: [
+      "Open TikTok, tap <strong>Share</strong> on the video and choose <strong>Copy link</strong>.",
+      "Paste the link into the TikTokio box at the top of this page and press the download button.",
+      "When the result loads, tap <strong>Download Audio Only</strong>. The MP3 is saved to your device.",
+    ],
+  },
+  {
+    h2: "Save TikTok audio on iPhone, Android and PC",
+    bullets: [
+      "<strong>iPhone / iPad:</strong> use Safari. Downloads go to the Files app (Downloads folder). From there you can share the file or open it in a music app.",
+      "<strong>Android:</strong> Chrome saves the MP3 to your Downloads folder; any file manager or music player can open it from there.",
+      "<strong>Windows / Mac:</strong> the file lands in your browser’s download folder. Drag it into your music library or editing software.",
+    ],
+  },
+  {
+    h2: "MP3 or MP4: which one should you save?",
+    table: {
+      head: ["", "MP3 (audio only)", "MP4 (video)"],
+      rows: [
+        ["Contains", "The sound only", "Picture and sound"],
+        ["Typical use", "Listening offline, reference, voice-overs", "Watching, editing clips, sharing privately"],
+        ["File size", "Usually much smaller", "Larger"],
+        ["Button in TikTokio", "Download Audio Only", "Download video buttons"],
+      ],
+    },
+  },
+  {
+    h2: "Sound quality: what to expect",
+    paragraphs: [
+      "TikTokio saves the audio file that TikTok serves for the post. Quality is therefore set by TikTok and by what the creator uploaded; it cannot be improved by a downloader. If a video uses a licensed track, you may only get the version TikTok exposes for that post.",
+    ],
+  },
+  {
+    h2: "Use TikTok sounds responsibly",
+    paragraphs: [
+      "Music and voices in TikTok videos belong to their creators and rights holders. Save audio for personal use only, and do not re-upload, sell or monetise it without permission. Rights holders can send removal requests through our <a class=\"text-blue-700 underline\" href=\"/contact/\">contact page</a>.",
+    ],
+  },
+  {
+    h2: "TikTok MP3 download not working?",
+    bullets: [
+      "The video must be <strong>public</strong>. Private or deleted videos cannot be loaded.",
+      "Copy the link again from the Share menu; incomplete links are the most common cause of errors.",
+      "Some posts do not expose a separate sound. In that case the audio button does not appear — save the video instead.",
+      "Turn off ad blockers or data-saver modes for this page, then reload and try again.",
+    ],
+  },
+];
+
+const faqs = [
+  { q: "Is the TikTok to MP3 download free?", a: "Yes. TikTokio is free to use and needs no account or app." },
+  { q: "Can I get the audio from a private TikTok?", a: "No. Only public videos can be loaded." },
+  { q: "Why is there no audio button for my video?", a: "The button only appears when TikTok provides a sound for that post. If it does not, save the video as MP4 instead." },
+  { q: "Do I need an app or APK to save TikTok audio?", a: "No. Everything runs in your browser. See <a href=\"/tiktokio-apk-app/\">our note on TikTokio APK and apps</a> for how to avoid unsafe downloads." },
+  { q: "Is it legal to download TikTok audio?", a: "Saving a sound for private, personal use is generally treated differently from sharing or selling it, but rules vary by country and by the sound’s licence. Do not redistribute audio you do not have rights to." },
+];
+
+const related = [
+  { href: "/tiktok-video-downloader/", label: "TikTok video downloader" },
+  { href: "/tiktok-photo-downloader/", label: "TikTok photo & slideshow page" },
+  { href: "/", label: "TikTokio home" },
+];
+---
+
+<Layout title={title} description={description} keywords={keywords} image="images/tiktok-downloader.webp" variant="dtv" lang="en">
+  <ToolHero title="TikTok to MP3 – Save the Sound of Any TikTok" subtitle="Paste a public TikTok link, then choose Download Audio Only" />
+  <ContentPage sections={sections} faqs={faqs} related={related} updated="November 2026" />
+</Layout>

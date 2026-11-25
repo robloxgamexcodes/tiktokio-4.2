@@ -1,0 +1,71 @@
+---
+// English-only page for "tiktokio apk / app" searches (new, Nov 2026).
+// Purpose: tell searchers plainly that TikTokio is a website with no official APK, and how to stay safe.
+import Layout from "../layouts/Layout.astro";
+import ContentPage from "../components/content-page.astro";
+
+const title = "TikTokio APK or App? Use the Website Instead";
+const description = "TikTokio works in your browser. There is no official TikTokio APK or app to install; here is how to stay safe and use it on any device.";
+const keywords = "tiktokio apk, tiktokio app, tiktokio download app, tiktok downloader no app";
+
+const sections = [
+  {
+    h2: "Is there a TikTokio app or APK?",
+    paragraphs: [
+      "No. TikTokio is a website that runs in your browser at tiktokio.cam. We do not publish an Android APK, an iOS app or a desktop program. Pages offering a “TikTokio APK” are not from us.",
+    ],
+  },
+  {
+    h2: "Why you should avoid downloaded APK files",
+    bullets: [
+      "APK files from unknown websites can carry malware, adware or hidden subscriptions.",
+      "An APK installed outside Google Play does not get Play Protect’s normal update checks.",
+      "Modified (“mod”) versions of apps often ask for permissions they do not need.",
+      "A browser tool needs no install and no special permissions.",
+    ],
+  },
+  {
+    h2: "How to use TikTokio without installing anything",
+    steps: [
+      "Open <strong>tiktokio.cam</strong> in Safari, Chrome or any modern browser.",
+      "Copy the link of a public TikTok video and paste it into the box.",
+      "Choose the video or audio download. The file is saved to your normal downloads folder.",
+    ],
+  },
+  {
+    h2: "Add TikTokio to your home screen (optional)",
+    paragraphs: [
+      "If you want an app-style shortcut, use your browser’s <strong>Add to Home Screen</strong> option. It creates an icon that opens the website — no APK needed. On iPhone use Safari’s Share menu; on Android use Chrome’s menu.",
+    ],
+  },
+  {
+    h2: "If you already installed a file called TikTokio APK",
+    bullets: [
+      "Uninstall it from your phone’s app settings.",
+      "Run a scan with Google Play Protect or a trusted security app.",
+      "Change passwords you entered while the app was installed, and check your payment apps for charges you do not recognise.",
+    ],
+  },
+];
+
+const faqs = [
+  { q: "Is there an official TikTokio APK?", a: "No. TikTokio only exists as the website tiktokio.cam." },
+  { q: "Will the website work on my phone?", a: "Yes. It works in the browser on iPhone, Android, tablets and computers." },
+  { q: "Can I save audio without an app?", a: "Yes. Use the <a href=\"/tiktok-mp3-downloader/\">TikTok to MP3 page</a> and choose Download Audio Only." },
+];
+
+const related = [
+  { href: "/tiktok-mp3-downloader/", label: "TikTok to MP3" },
+  { href: "/tiktok-video-downloader/", label: "TikTok video downloader" },
+  { href: "/", label: "TikTokio home" },
+];
+---
+
+<Layout title={title} description={description} keywords={keywords} image="images/tiktok-downloader.webp" lang="en">
+  <section class="bg-gradient-to-r from-blue-800 to-indigo-900 pt-24 pb-12 text-center">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-4xl px-4">TikTokio APK or App? Use the Website Instead</h1>
+    <p class="mt-3 text-lg text-gray-100 px-4">No install, no APK — works in your browser.</p>
+    <a href="/" class="inline-block mt-6 rounded-full bg-amber-500 px-6 py-3 font-semibold text-black">Open the downloader</a>
+  </section>
+  <ContentPage sections={sections} faqs={faqs} related={related} updated="November 2026" />
+</Layout>

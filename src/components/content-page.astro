@@ -1,0 +1,89 @@
+---
+// Article-style content block for English landing pages: sections, optional table, FAQ (+ FAQPage JSON-LD)
+// and related links. Content lives in the page file so each page keeps unique copy.
+export interface Section {
+  h2: string;
+  paragraphs?: string[];
+  steps?: string[];
+  bullets?: string[];
+  table?: { head: string[]; rows: string[][] };
+}
+const { sections = [], faqs = [], related = [], updated } = Astro.props as {
+  sections: Section[];
+  faqs: { q: string; a: string }[];
+  related: { href: string; label: string }[];
+  updated?: string;
+};
+const faqSchema = faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+---
+
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+<article class="mx-auto max-w-4xl px-6 py-12 lg:px-8 text-gray-800">
+  {updated && <p class="text-sm text-gray-500 mb-6">Last reviewed: {updated}</p>}
+  {sections.map((s) => (
+    <section class="mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{s.h2}</h2>
+      {s.paragraphs?.map((p) => <p class="text-lg leading-8 mb-4" set:html={p} />)}
+      {s.steps && (
+        <ol class="list-decimal pl-6 space-y-2 text-lg leading-8 mb-4">
+          {s.steps.map((x) => <li set:html={x} />)}
+        </ol>
+      )}
+      {s.bullets && (
+        <ul class="list-disc pl-6 space-y-2 text-lg leading-8 mb-4">
+          {s.bullets.map((x) => <li set:html={x} />)}
+        </ul>
+      )}
+      {s.table && (
+        <div class="overflow-x-auto mb-4">
+          <table class="min-w-full border border-gray-200 text-left text-base">
+            <thead class="bg-gray-100">
+              <tr>{s.table.head.map((h) => <th class="px-4 py-2 border-b border-gray-200">{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {s.table.rows.map((r) => (
+                <tr>{r.map((c) => <td class="px-4 py-2 border-b border-gray-100" set:html={c} />)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  ))}
+
+  {faqs.length > 0 && (
+    <section class="mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqs.map((f) => (
+          <div class="rounded-lg border border-gray-200 p-5">
+            <h3 class="font-semibold text-lg mb-2">{f.q}</h3>
+            <p class="text-gray-700 leading-7" set:html={f.a} />
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section>
+      <h2 class="text-xl font-bold text-gray-900 mb-3">Related tools</h2>
+      <ul class="flex flex-wrap gap-3">
+        {related.map((r) => (
+          <li><a class="inline-block rounded-full border border-blue-600 px-4 py-2 text-blue-700 hover:bg-blue-50" href={r.href}>{r.label}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+</article>

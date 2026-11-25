@@ -1,32 +1,70 @@
 ---
-// src/pages/tiktok-video-downloader.astro
-// Updated: i18n restored. SEO/props aligned with ui.ts keys (e.g., 'site.tvd_title').
-// Pass lang to Layout. Fallbacks for missing keys.
-
-import Container from "../components/container.astro";
-import Faq from "../components/faq.astro";
-import Features from "../components/tvdfeatures.astro";
-import Hero from "../components/tvd-hero.astro";
+// English photo/slideshow page. Uses its own hero + copy (it used to render the same hero, features and
+// FAQ as /tiktok-video-downloader/, which made the two pages near-duplicates).
 import Layout from "../layouts/Layout.astro";
-
-// i18n: Per-page setup
+import ToolHero from "../components/tool-hero.astro";
+import ContentPage from "../components/content-page.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
 const safeUrl = Astro.url || new URL('/', Astro.site || 'http://localhost:4321');
 const lang = getLangFromUrl(safeUrl);
 const t = useTranslations(lang);
 
-// SEO/props: Matched to ui.ts structure (flat keys under language)
-const title = t('dft.title') ?? 'TikTok Video Downloader - Free HD Downloads Without Watermark | TikTokio';
-const description = t('dft.description') ?? 'Download TikTok videos in HD quality, no watermark, for free. Supports MP4 and audio export.';
-const keywords = t('dft.keywords') ?? 'tiktok video downloader, download tiktok videos, tiktok hd downloader, no watermark tiktok, tiktokiocam';
-const image = 'images/tiktok-downloader.webp';  // Static; add to ui.ts if i18n needed (e.g., t('site.tvd_image'))
-const variant = 'dtv';
+const title = t('dft.title') ?? 'TikTok Photo Downloader – No Watermark | TikTokio';
+const description = t('dft.description') ?? 'Download TikTok photo slideshows and carousel images without watermark.';
+const keywords = t('dft.keywords') ?? 'tiktok photo downloader, download tiktok slideshow images';
+const image = 'images/tiktok-downloader.webp';
+
+const sections = [
+  {
+    h2: "How to download TikTok photos and slideshows",
+    steps: [
+      "Open the photo post in TikTok, tap <strong>Share</strong> and choose <strong>Copy link</strong>.",
+      "Paste the link into the box above and press the download button.",
+      "Every picture in the post is listed with its own <strong>Download photo</strong> link. Tap the ones you want.",
+      "To keep the slideshow’s music as well, use <strong>Download Audio Only</strong> (see the <a class=\"text-blue-700 underline\" href=\"/tiktok-mp3-downloader/\">TikTok to MP3 page</a>).",
+    ],
+  },
+  {
+    h2: "What is a TikTok photo post?",
+    paragraphs: [
+      "A photo post (also called a slideshow or carousel) is a set of pictures that viewers swipe through, usually with a sound playing in the background. Unlike a normal video it has no video file, so a video downloader has nothing to save. TikTokio reads the pictures from the post instead.",
+    ],
+  },
+  {
+    h2: "Saving photos on iPhone, Android and PC",
+    bullets: [
+      "<strong>iPhone:</strong> use Safari; pictures go to Files &gt; Downloads. Open one and choose Save Image to put it in Photos.",
+      "<strong>Android:</strong> Chrome saves to Downloads; the Gallery app picks them up automatically.",
+      "<strong>PC / Mac:</strong> pictures go to your browser’s download folder.",
+    ],
+  },
+  {
+    h2: "Photo downloads not showing?",
+    bullets: [
+      "The post must be public.",
+      "Copy the link again from the Share menu — short links (vm.tiktok.com) work too.",
+      "If the post is a regular video, use the <a class=\"text-blue-700 underline\" href=\"/tiktok-video-downloader/\">video downloader</a> instead.",
+      "Respect creators: save pictures for personal use and do not repost them without permission.",
+    ],
+  },
+];
+
+const faqs = [
+  { q: "Can I download all pictures from a TikTok slideshow?", a: "Yes, when the post is public. Each picture gets its own download link." },
+  { q: "Do the photos have a watermark?", a: "The pictures are saved as TikTok serves them for the post; TikTokio does not add its own watermark." },
+  { q: "Can I also save the slideshow’s sound?", a: "Yes. Use Download Audio Only after loading the post." },
+  { q: "Is it free?", a: "Yes, no account or app is needed." },
+];
+
+const related = [
+  { href: "/tiktok-mp3-downloader/", label: "TikTok to MP3" },
+  { href: "/tiktok-video-downloader/", label: "TikTok video downloader" },
+  { href: "/tiktok-thumbnail-downloader/", label: "TikTok thumbnail downloader" },
+];
 ---
 
-<Layout title={title} description={description} keywords={keywords} image={image} variant={variant} lang={lang}>
-   <Hero />
-  <Container>
-    <Features />
-    <Faq />
-  </Container>
+<Layout title={title} description={description} keywords={keywords} image={image} variant="dtv" lang={lang}>
+  <ToolHero title="TikTok Photo & Slideshow Downloader" subtitle="Paste a TikTok photo post link and save the pictures" />
+  <ContentPage sections={sections} faqs={faqs} related={related} updated="November 2026" />
 </Layout>

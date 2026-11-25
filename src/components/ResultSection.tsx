@@ -35,6 +35,8 @@ interface ResultSectionProps {
 
       music: string | null;
 
+      images?: any[] | null;
+
       uploadDate?: string | null;
 
       thumbnail?: string | null;
@@ -897,6 +899,27 @@ function ResultSection(props: ResultSectionProps) {
                   )}
 
 
+
+                  {/* Photo / slideshow posts: list every picture with its own download link */}
+
+                  {Array.isArray(result.images) && result.images.length > 0 && (
+                    <div class="w-full rounded border border-gray-200 p-3">
+                      <p class="mb-2 font-semibold text-gray-800">Photos in this post ({result.images.length})</p>
+                      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                        {result.images.map((img: any, i: number) => {
+                          const src: string = typeof img === "string" ? img : (img?.url || img?.urlList?.[0] || img?.imageURL?.urlList?.[0] || "");
+                          if (!src) return null;
+                          const proxied = `/api/download.json?url=${encodeURIComponent(src)}&type=.jpg&title=${encodeURIComponent(`${props.getSafeFilename()}_photo_${i + 1}`)}`;
+                          return (
+                            <a href={proxied} download class="block text-center text-sm text-blue-700 underline">
+                              <img src={proxied} alt={`TikTok photo ${i + 1}`} loading="lazy" class="mb-1 h-32 w-full rounded object-cover" />
+                              Download photo {i + 1}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Download Thumbnail */}
 

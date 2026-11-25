@@ -8,8 +8,20 @@ const faqs: { q: string; a: string }[] = [];
 for (let n = 1; en[`home.faq.question${n}`]; n++) {
 	faqs.push({ q: en[`home.faq.question${n}`], a: en[`home.faq.answer${n}`] });
 }
+const faqSchema = faqs.length
+	? {
+			'@context': 'https://schema.org',
+			'@type': 'FAQPage',
+			mainEntity: faqs.map((f) => ({
+				'@type': 'Question',
+				name: f.q,
+				acceptedAnswer: { '@type': 'Answer', text: f.a },
+			})),
+		}
+	: null;
 ---
 
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
 	<div class="mx-auto divide-y divide-gray-900/10">
 		<div class="text-center mb-16">

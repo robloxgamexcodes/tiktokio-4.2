@@ -67,7 +67,13 @@ const siteUrl = (Astro.site ? Astro.site.toString().replace(/\/$/, '') : '') || 
 const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
 const ogImageUrl = `${siteUrl}/${image.replace(/^\/+/, '')}`;
 
-const locales = ['en', 'it', 'vi', 'ar', 'fr', 'de', 'es', 'hi', 'id', 'ru', 'pt', 'ko', 'tl', 'nl', 'ms', 'tr'];
+// Pages that only exist in English: no hreflang alternates (they would point to 404s).
+const EN_ONLY_SLUGS = ['tiktok-mp3-downloader', 'tiktokio-apk-app'];
+const isEnOnly = EN_ONLY_SLUGS.includes(_slug);
+const locales = isEnOnly
+  ? ['en']
+  : ['en', 'it', 'vi', 'ar', 'fr', 'de', 'es', 'hi', 'id', 'ru', 'pt', 'ko', 'tl', 'nl', 'ms', 'tr'];
+
 const pathWithoutLang = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|ru|pt|ko|tl|nl|ms|tr)\//, '/');
 ---
 

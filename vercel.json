@@ -11,5 +11,6 @@
       "destination": "https://tiktokio.cam/:path*",
       "permanent": true
     }
-  ]
+  ],
+  "trailingSlash": true
 }

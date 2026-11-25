@@ -26,6 +26,13 @@ const description = "Learn about TikTokio, your ultimate destination for downloa
 ---
 
 <Layout title={title} description={description}>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'AboutPage',
+		name: 'About TikTokio',
+		url: 'https://tiktokio.cam/about/',
+		mainEntity: { '@type': 'Organization', name: 'TikTokio', url: 'https://tiktokio.cam/', sameAs: ['https://x.com/tiktokio_cam'] },
+	})} />
 	<section class="items-center h-full p-16">
 	<div class="relative p-4">
     <div class="max-w-6xl mx-auto">
@@ -78,6 +85,24 @@ const description = "Learn about TikTokio, your ultimate destination for downloa
 					Our team listens to your feedback, constantly improving TikTokio to meet your needs. 
 					Join our global community and make every TikTok moment yours—download today and experience the freedom of watermark-free, high-quality videos with TikTokio.
 
+                </p>
+
+                <h3 class="text-2xl font-bold my-5">How TikTokio works</h3>
+                <p class="text-base leading-8 my-5">
+                    You paste the link of a <strong>public</strong> TikTok post. TikTokio looks the post up and shows the available files: video, audio-only (MP3), the cover image and, for photo posts, each picture.
+                    We never ask for your TikTok password or login, and private videos cannot be loaded. See our <a class="text-blue-700 underline" href={localizePath("/privacy-policy")}>Privacy Policy</a> and <a class="text-blue-700 underline" href={localizePath("/terms-of-service")}>Terms of Service</a> for details.
+                </p>
+
+                <h3 class="text-2xl font-bold my-5">Creators, copyright and removal requests</h3>
+                <p class="text-base leading-8 my-5">
+                    TikTokio does not host the videos it lets you download, and the content belongs to its creators. Use downloads for personal purposes and do not re-upload or sell other people’s work.
+                    If you are a rights holder and want something removed or blocked, use our <a class="text-blue-700 underline" href={localizePath("/contact")}>contact page</a> and include the link to the post and proof that you own the rights.
+                </p>
+
+                <h3 class="text-2xl font-bold my-5">Contact and corrections</h3>
+                <p class="text-base leading-8 my-5">
+                    Found a mistake, a broken download or something unsafe? Tell us through the <a class="text-blue-700 underline" href={localizePath("/contact")}>contact page</a> or on X at <a class="text-blue-700 underline" rel="noopener" href="https://x.com/tiktokio_cam">@tiktokio_cam</a>.
+                    TikTokio is an independent tool and is not affiliated with TikTok or ByteDance. Pages on this site are reviewed and updated when TikTok changes how downloads work.
                 </p>
 
                 

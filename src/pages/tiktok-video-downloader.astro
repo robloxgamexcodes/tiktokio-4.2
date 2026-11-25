@@ -8,6 +8,7 @@ import Faq from "../components/faq.astro";
 import Features from "../components/tvdfeatures.astro";
 import Hero from "../components/tvd-hero.astro";
 import Layout from "../layouts/Layout.astro";
+import ContentPage from "../components/content-page.astro";
 
 // i18n: Per-page setup
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
@@ -21,6 +22,30 @@ const description = t('tvd.description') ?? 'Download TikTok videos in HD qualit
 const keywords = t('tvd.keywords') ?? 'tiktok video downloader, download tiktok videos, tiktok hd downloader, no watermark tiktok, tiktokiocam';
 const image = 'images/tiktok-downloader.webp';  // Static; add to ui.ts if i18n needed (e.g., t('site.tvd_image'))
 const variant = 'tvd';
+
+// English-only extra copy: this page owns the "tiktok video downloader / no watermark / HD" intent.
+const enSections = [
+  {
+    h2: "TikTok video without watermark: how it works",
+    paragraphs: [
+      "TikTok adds a moving logo and the creator’s username to videos saved from inside the app. TikTokio loads the video file for the public link you paste, so the default download has no TikTok logo overlay. If you ever want the original with the watermark, a separate <strong>Download (With Watermark)</strong> button is shown.",
+    ],
+  },
+  {
+    h2: "HD quality: what you actually get",
+    paragraphs: [
+      "TikTokio saves the best quality that TikTok serves for that post. If the creator uploaded in HD, you get that file; a low-resolution upload cannot be upgraded by any downloader. File size and resolution therefore vary from video to video.",
+    ],
+  },
+  {
+    h2: "Other things you can save",
+    bullets: [
+      "<strong>Audio only:</strong> see <a class=\"text-blue-700 underline\" href=\"/tiktok-mp3-downloader/\">TikTok to MP3</a>.",
+      "<strong>Photo posts and slideshows:</strong> see the <a class=\"text-blue-700 underline\" href=\"/tiktok-photo-downloader/\">photo downloader</a>.",
+      "<strong>Cover image:</strong> use the Download Thumbnail button after loading a video.",
+    ],
+  },
+];
 ---
 
 <Layout title={title} description={description} keywords={keywords} image={image} variant={variant} lang={lang}>
@@ -29,4 +54,5 @@ const variant = 'tvd';
     <Features />
     <Faq />
   </Container>
+  {lang === 'en' && <ContentPage sections={enSections} faqs={[]} related={[]} />}
 </Layout>
