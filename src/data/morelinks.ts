@@ -123,8 +123,9 @@ export const featuredLinks: FeaturedLink[] = [
   
   {
     html: `<a href="https://buildrship.xyz/products/musicallydown" target="_blank" rel="nofollow noopener noreferrer"><img src="https://buildrship.xyz/assets/featured-on-buildrship-v2.png" alt="Featured on Buildrship" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://hicyou.com" target="_blank" rel="noopener"><img src="https://hicyou.com/badge/featured-light.svg" alt="Featured" width="120" height="36" /></a>`
   }
-
-
 
 ];
