@@ -112,5 +112,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
   }
 
-  return next();
+  const response = await next();
+
+  // Edge-cache HTML for locale-prefixed pages (/fr/, /de/, ...). They never depend on the visitor's
+  // country/cookie, so it is safe for the CDN to serve them without running the function (TTFB).
+  // Non-prefixed (English) URLs are NOT cached because the geo/language redirect above depends on the request.
+  if (
+    hasLocalePrefix &&
+    context.request.method === 'GET' &&
+    response.status === 200 &&
+    (response.headers.get('content-type') || '').includes('text/html') &&
+    !response.headers.has('set-cookie')
+  ) {
+    response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
+  }
+
+  return response;
 });
