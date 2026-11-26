@@ -18,6 +18,7 @@ interface InputSectionProps {
 function InputSection(props: InputSectionProps) {
   const handleInputChange = (e: Event) => {
     const newUrl = (e.target as HTMLInputElement).value;
+    console.log("Input changed:", newUrl);
     props.setUrl(newUrl);
     
     // Clear previous error when user starts typing
@@ -43,6 +44,7 @@ function InputSection(props: InputSectionProps) {
       );
 
       if (isPromotionalContent && cleanedUrl !== newUrl) {
+        console.log("Auto-processing detected in input field");
         props.setUrl(cleanedUrl);
         // Trigger auto-processing via parent state
         // Note: setAutoProcessing(true) is in parent, but we can emit event or call callback
@@ -55,6 +57,7 @@ function InputSection(props: InputSectionProps) {
     // Handle paste event directly in the input field
     setTimeout(() => {
       const pastedText = (e.target as HTMLInputElement).value;
+      console.log("Direct paste in input:", pastedText);
       
       if (pastedText && pastedText.length > 50) {
         const extractedUrl = props.extractTikTokUrl(pastedText);
@@ -73,6 +76,7 @@ function InputSection(props: InputSectionProps) {
         );
 
         if (isPromotionalContent && cleanedUrl !== pastedText) {
+          console.log("Auto-processing pasted promotional content");
           props.setUrl(cleanedUrl);
           // Trigger auto-processing via parent
         }

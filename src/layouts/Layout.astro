@@ -132,6 +132,8 @@ const pathWithoutLang = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|
     <!-- Favicons -->
     <link rel="icon" type="image/ico" href="/fav.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.webp" />
+   
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6af85fca72f6053e0a1bed62&product=sop"  async="async"></script>
   
     <slot name="head" />
   </head>
@@ -145,25 +147,5 @@ const pathWithoutLang = Astro.url.pathname.replace(/^\/(it|vi|ar|fr|de|es|hi|id|
     </main>
     <Footer lang={lang} />
     <script src="/src/pwa.ts"></script>
-    <script is:inline>
-      // Third-party scripts are loaded after the first user interaction (or ~4s idle) so they never
-      // compete with rendering or with the first taps (LCP / INP).
-      (function () {
-        var done = false;
-        function load() {
-          if (done) return; done = true;
-          var s = document.createElement('script');
-          s.src = 'https://platform-api.sharethis.com/js/sharethis.js#property=6af85fca72f6053e0a1bed62&product=sop';
-          s.async = true;
-          document.body.appendChild(s);
-        }
-        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
-          window.addEventListener(e, load, { once: true, passive: true });
-        });
-        window.addEventListener('load', function () {
-          (window.requestIdleCallback || function (f) { return setTimeout(f, 4000); })(load, { timeout: 6000 });
-        });
-      })();
-    </script>
   </body>
 </html>

@@ -41,14 +41,3 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 }
 
 
-
-/* Reserve the exact space of the client-only downloader form so the page does not jump when it mounts (CLS).
-   Mirrors InputScreen: wrapper mt-8 px-4 > max-w-4xl > p-2 box > form (mobile: 2 stacked h-14 rows, md+: 1 row). */
-.input-skeleton {
-  max-width: 56rem;
-  margin: 2rem auto 0;
-  min-height: 9.5rem; /* 2 x 56px rows + gaps + padding */
-}
-@media (min-width: 768px) {
-  .input-skeleton { min-height: 4.5rem; }
-}

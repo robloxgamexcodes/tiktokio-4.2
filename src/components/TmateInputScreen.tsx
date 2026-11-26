@@ -54,6 +54,7 @@ function InputScreen({}: Props) {
       // Any tiktok.com URL (fallback)
       /https?:\/\/[^\/]*tiktok\.com\/[^\s]*/g
     ];
+    console.log("Extracting URL from text:", text);
 
     for (const pattern of patterns) {
       const matches = text.match(pattern);
@@ -62,6 +63,7 @@ function InputScreen({}: Props) {
         let url = matches[0];
         // Remove trailing punctuation that might be part of the sentence
         url = url.replace(/[.,!?;]+$/, '');
+        console.log("Extracted URL:", url);
         return url;
       }
     }
@@ -105,11 +107,13 @@ function InputScreen({}: Props) {
     // Handle parameters like: ?is_from_webapp=1&sender_device=pc&web_id=123456
     if (cleanUrl.includes('?')) {
       cleanUrl = cleanUrl.split('?')[0];
+      console.log("Removed query parameters, clean URL:", cleanUrl);
     }
 
     // Remove URL fragments (# and everything after)
     if (cleanUrl.includes('#')) {
       cleanUrl = cleanUrl.split('#')[0];
+      console.log("Removed fragments, clean URL:", cleanUrl);
     }
 
     // Ensure we have https protocol
@@ -120,6 +124,7 @@ function InputScreen({}: Props) {
     // Remove any trailing slashes that might cause issues
     cleanUrl = cleanUrl.replace(/\/+$/, '');
 
+    console.log("Final cleaned URL:", cleanUrl);
     return cleanUrl;
   };
 
@@ -129,6 +134,8 @@ function InputScreen({}: Props) {
 
     try {
       const tiktokUrl = url().trim();
+      console.log("=== FRONTEND DEBUG ===");
+      console.log("1. Original URL:", tiktokUrl);
 
       if (!tiktokUrl) {
         throw new Error("Please enter a TikTok URL");
@@ -143,8 +150,10 @@ function InputScreen({}: Props) {
         }
       }
 
+      console.log("2. Encoded URL:", encodeURIComponent(tiktokUrl));
 
       const apiUrl = `/api/tik.json?url=${encodeURIComponent(tiktokUrl)}`;
+      console.log("3. Final API URL:", apiUrl);
 
       let res = await fetch(apiUrl, {
         method: 'GET',
@@ -153,11 +162,17 @@ function InputScreen({}: Props) {
         },
       });
 
+      console.log("4. Response status:", res.status);
+      console.log("5. Response URL:", res.url);
 
       let json = await res.json();
 
+      console.log("6. FULL API RESPONSE:");
+      console.log(JSON.stringify(json, null, 2));
 
       if (json.debug) {
+        console.log("7. DEBUG INFO FROM SERVER:");
+        console.log(JSON.stringify(json.debug, null, 2));
       }
 
       if (!res.ok) {
@@ -186,7 +201,9 @@ function InputScreen({}: Props) {
       if (!hasVideo && !hasAudio) {
         throw new Error("No downloadable content found. The video might be protected or unavailable.");
       }
+      console.log("DEBUG: About to setData with json.result:", json.result);
       setData(json);
+      console.log("DEBUG: setData called successfully");
 
       setError("");
 
@@ -233,11 +250,17 @@ function InputScreen({}: Props) {
       const permission = await navigator.permissions.query({ name: 'clipboard-read' as any });
       if (permission.state === 'granted' || permission.state === 'prompt') {
         const text = await navigator.clipboard.readText();
+        console.log("=== PASTE PROCESSING ===");
+        console.log("Pasted raw text:", text);
+        console.log("Text length:", text.length);
 
         // Extract and clean the TikTok URL from the pasted text
         const extractedUrl = extractTikTokUrl(text);
         const cleanedUrl = cleanTikTokUrl(extractedUrl);
 
+        console.log("Extracted URL:", extractedUrl);
+        console.log("Cleaned URL:", cleanedUrl);
+        console.log("URL length:", cleanedUrl.length);
 
         setUrl(cleanedUrl);
 
@@ -256,6 +279,7 @@ function InputScreen({}: Props) {
             )
           );
 
+          console.log("Is promotional content:", isPromotionalContent);
           console.log("Content indicators:", {
             lengthDiff: text.length - cleanedUrl.length,
             hasTikTokLite: text.toLowerCase().includes('tiktok lite'),
@@ -265,6 +289,7 @@ function InputScreen({}: Props) {
           });
 
           if (isPromotionalContent) {
+            console.log("Auto-processing promotional content...");
             setAutoProcessing(true);
 
             toast.success("TikTok URL extracted! Starting download automatically...", {
@@ -277,10 +302,12 @@ function InputScreen({}: Props) {
 
             // Auto-start processing for promotional content
             setTimeout(() => {
+              console.log("Executing auto fetchData...");
               fetchData();
             }, 1200); // Slightly longer delay to ensure UI updates
 
           } else {
+            console.log("Direct URL pasted, no auto-processing");
             toast.success("Valid TikTok URL pasted! Click Download to process.", {
               duration: 1500,
               position: "bottom-center",
@@ -322,6 +349,9 @@ function InputScreen({}: Props) {
     const url = pendingDownloadUrl();
     const filename = pendingFilename();
 
+    console.log("=== CLOSE AND DOWNLOAD ===");
+    console.log("URL:", url);
+    console.log("Filename:", filename);
 
     // Close modal first
     setShowModal(false);
@@ -385,6 +415,8 @@ function InputScreen({}: Props) {
     }
 
     const currentUrl = url().trim();
+    console.log("=== FORM SUBMISSION ===");
+    console.log("Form submission - URL value:", currentUrl);
 
     // Auto-extract URL if the input contains promotional text
     if (currentUrl && currentUrl.length > 100 && currentUrl.includes('tiktok')) {
@@ -404,6 +436,7 @@ function InputScreen({}: Props) {
     fetchData();
   };
 
+  console.log("DEBUG: InputScreen rendering with data:", data());
 
   return (
     <div class="max-w-6xl mx-auto mt-8 px-4">

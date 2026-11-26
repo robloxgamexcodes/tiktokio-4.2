@@ -23,9 +23,7 @@ const { dynamic = false } = Astro.props;
     <div class="mx-auto max-w-6xl text-center">
       <h1 class="text-2xl font-bold tracking-tight text-white sm:text-4xl">{t("hero.title")}</h1>
         <p class="mt-2 text-lg leading-8 text-white">{t("hero.subtitle")}</p>
-    <InputScreen client:only="solid-js">
-      <div slot="fallback" class="input-skeleton" aria-hidden="true"></div>
-    </InputScreen>
+    <InputScreen client:only="solid-js" />
       
 </div>
     </div>
