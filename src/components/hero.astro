@@ -1,4 +1,5 @@
 ---
+import HeroAd from "./HeroAd.astro";
 import InputScreen from "./InputScreen";
 import { useTranslations } from "../i18n/utils";
 
@@ -12,10 +13,9 @@ const t = useTranslations("en");
         <h1 class="text-2xl font-bold tracking-tight text-black sm:text-4xl">{t("home.main.hero.title")}</h1>
         <p class="mt-2 text-lg leading-8 text-gray-900">{t("home.main.hero.subtitle")}</p>
    
-        
-        <InputScreen client:only="solid-js">
-      <div slot="fallback" class="input-skeleton" aria-hidden="true"></div>
-    </InputScreen>
+
+        <InputScreen client:only="solid-js"><div slot="fallback" class="max-w-6xl mx-auto mt-8 px-4 min-h-[140px] md:min-h-[80px]"></div></InputScreen>
+        <HeroAd />
       </div>
     </div>
   </div>
