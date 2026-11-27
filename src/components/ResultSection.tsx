@@ -67,9 +67,7 @@ interface ResultSectionProps {
 
 function ResultSection(props: ResultSectionProps) {
 
-  console.log("🎨 ResultSection rendering");
 
-  console.log("📦 Props data:", props.data);
 
   console.log("📊 Result stats:", {
 
@@ -89,7 +87,6 @@ function ResultSection(props: ResultSectionProps) {
 
   if (!props.data || !props.data.result) {
 
-    console.log("❌ No data or result, returning null");
 
     return null;
 
@@ -359,11 +356,8 @@ function ResultSection(props: ResultSectionProps) {
 
 
 
-  console.log("🖼️ Thumbnail URL:", thumbnail);
 
-  console.log("👤 Avatar URL:", avatarUrl);
 
-  console.log("👤 Full avatar object:", props.data.result.author);
 
 
 
@@ -425,7 +419,6 @@ function ResultSection(props: ResultSectionProps) {
 
                 style={{ zIndex: 1, pointerEvents: 'none' }}
 
-                onLoad={() => console.log("✅ Background image loaded")}
 
                 onError={(e) => {
 
@@ -517,7 +510,6 @@ function ResultSection(props: ResultSectionProps) {
 
                           crossorigin="anonymous"
 
-                          onLoad={() => console.log("✅ Avatar loaded successfully:", avatarUrl)}
 
                           onError={handleAvatarError}
 

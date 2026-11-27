@@ -36,6 +36,12 @@ const websiteSchema = {
 		"query-input": "required name=search_term_string"
 	}
 };
+
+// Pages that output their own (visible-content) FAQPage JSON-LD. Google accepts only one FAQPage per page,
+// so the generic site-wide FAQPage below is skipped on them.
+const _footerSlug = (Astro.url?.pathname || "/").replace(/^\/(it|vi|ar|fr|de|es|hi|id|ru|pt|ko|tl|nl|ms|tr)\//, "/").replace(/^\/|\/$/g, "");
+const pageHasOwnFaqSchema = ["", "tiktok-video-downloader", "tiktok-downloader", "tiktok-photo-downloader", "tiktok-mp3-downloader", "tiktokio-apk-app"].includes(_footerSlug);
+const footerFaqSchema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is TikTokio really free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! TikTokio is 100% free. You can download unlimited TikTok videos without watermark, no registration, no login and no hidden fees."}}, {"@type": "Question", "name": "Do I need to install any app or extension?", "acceptedAnswer": {"@type": "Answer", "text": "No installation required! TikTokio works directly in your browser on any device – phone, tablet, or computer. Just paste the TikTok link and download instantly."}}, {"@type": "Question", "name": "Will the downloaded videos have the TikTok watermark/logo?", "acceptedAnswer": {"@type": "Answer", "text": "Never. All videos and photos downloaded with TikTokio are completely watermark-free, giving you clean, high-quality MP4 files or images ready for reposting or editing."}}, {"@type": "Question", "name": "Is it safe and legal to download TikTok videos using TikTokio?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely safe – we don’t store your data or the videos you download. As for legality: downloading for personal use or backup is generally allowed, but always respect the original creator’s copyright and TikTok’s terms of service."}}, {"@type": "Question", "name": "Why does TikTokio download faster than other tools?", "acceptedAnswer": {"@type": "Answer", "text": "We use advanced servers located worldwide and direct high-speed connections to TikTok’s CDN, so you get your videos in HD or even 4K quality in seconds – no buffering, no waiting."}}, {"@type": "Question", "name": "Which devices and browsers does TikTokio support?", "acceptedAnswer": {"@type": "Answer", "text": "TikTokio works on every device and browser – iPhone (Safari/Chrome), Android, Windows, Mac, Linux, iPad and even smart TVs. Whether you are using Chrome, Firefox, Safari, Edge, Opera or Brave, just open TikTokio, paste the link and download instantly – no compatibility issues ever!"}}]};
 ---
 
 <footer class="pb-12 pt-8 dark:bg-stone-950">
@@ -59,7 +65,6 @@ const websiteSchema = {
 			</li>
 			<li role="listitem">
 				<a href={localizePath("/privacy-policy")} class="duration-300 hover:text-gray-900 dark:hover:text-gray-100">Privacy Policy</a>
-			</li>
 			</li>
 			<li role="listitem">
 				<a href={localizePath("/savetik-download-tiktok-video-without-watermark-free")} class="duration-300 hover:text-gray-900 dark:hover:text-gray-100">SaveTik</a>
@@ -152,63 +157,31 @@ const websiteSchema = {
 		}
 		</script>
 		
-		<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "Is TikTokio really free to use?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes! TikTokio is 100% free. You can download unlimited TikTok videos without watermark, no registration, no login and no hidden fees."
-    }
-  },{
-    "@type": "Question",
-    "name": "Do I need to install any app or extension?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "No installation required! TikTokio works directly in your browser on any device – phone, tablet, or computer. Just paste the TikTok link and download instantly."
-    }
-  },{
-    "@type": "Question",
-    "name": "Will the downloaded videos have the TikTok watermark/logo?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Never. All videos and photos downloaded with TikTokio are completely watermark-free, giving you clean, high-quality MP4 files or images ready for reposting or editing."
-    }
-  },{
-    "@type": "Question",
-    "name": "Is it safe and legal to download TikTok videos using TikTokio?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Absolutely safe – we don’t store your data or the videos you download. As for legality: downloading for personal use or backup is generally allowed, but always respect the original creator’s copyright and TikTok’s terms of service."
-    }
-  },{
-    "@type": "Question",
-    "name": "Why does TikTokio download faster than other tools?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "We use advanced servers located worldwide and direct high-speed connections to TikTok’s CDN, so you get your videos in HD or even 4K quality in seconds – no buffering, no waiting."
-    }
-  },{
-    "@type": "Question",
-    "name": "Which devices and browsers does TikTokio support?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "TikTokio works on every device and browser – iPhone (Safari/Chrome), Android, Windows, Mac, Linux, iPad and even smart TVs. Whether you are using Chrome, Firefox, Safari, Edge, Opera or Brave, just open TikTokio, paste the link and download instantly – no compatibility issues ever!"
-    }
-  }]
-}
-</script>
+		{!pageHasOwnFaqSchema && <script type="application/ld+json" set:html={JSON.stringify(footerFaqSchema)} />}
 		
 		<!-- Google Analytics -->
-		<!-- gtag.js is loaded after idle/first interaction by the loader in Layout.astro -->
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 			gtag('config', 'G-C33KK2QQG5');
+			// Load gtag.js after first interaction or idle, not during page load
+			(function () {
+				var done = false;
+				function load() {
+					if (done) return; done = true;
+					var s = document.createElement('script');
+					s.async = true;
+					s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C33KK2QQG5';
+					document.head.appendChild(s);
+				}
+				['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+					window.addEventListener(e, load, { once: true, passive: true });
+				});
+				window.addEventListener('load', function () {
+					(window.requestIdleCallback || function (f) { return setTimeout(f, 3000); })(load, { timeout: 5000 });
+				});
+			})();
 		</script>
 		
 		<!-- Social Media Links -->

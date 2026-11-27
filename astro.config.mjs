@@ -70,7 +70,7 @@ export default defineConfig({
           { src: 'pwa-512x512.webp', sizes: '512x512', type: 'image/webp', purpose: 'any maskable' },
         ],
       },
-      workbox: { navigateFallback: '/404', globPatterns: ['*.js'] },
+      workbox: { navigateFallback: null, globPatterns: ['*.js'] },
       devOptions: { enabled: false, navigateFallbackAllowlist: [/^\/404$/], suppressWarnings: true },
     }),
     icon(),

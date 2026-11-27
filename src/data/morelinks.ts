@@ -59,75 +59,75 @@ export const moreLinks: MoreLink[] = [
 
 export const featuredLinks: FeaturedLink[] = [
   {
-    html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="120" height="36"></a>`,
+    html: `<a href="https://frogdr.com/tiktokio.cam?utm_source=tiktokio.cam" target="_blank"><img loading="lazy" decoding="async" src="https://frogdr.com/tiktokio.cam/badge-white.svg" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="120" height="36"></a>`,
   },
   
   {
-    html: `<a href="https://circlesaasboard.com/startup/5-letter-word-finder-520271" target="_blank" rel="noopener"><img src="https://circlesaasboard.com/badge.svg" alt="Featured on CircleSaaS" width="120" height="36" /></a>`,
+    html: `<a href="https://circlesaasboard.com/startup/5-letter-word-finder-520271" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://circlesaasboard.com/badge.svg" alt="Featured on CircleSaaS" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://nicklaunches.com/products/tiktokio/" target="_blank" rel="noopener"><img src="https://nicklaunches.com/badges/featured.png" alt="Tiktokio on Nick Launches" width="120" height="36" /></a>`,
+    html: `<a href="https://nicklaunches.com/products/tiktokio/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://nicklaunches.com/badges/featured.png" alt="Tiktokio on Nick Launches" width="120" height="36" /></a>`,
   },
   {
     html: `<a href="https://smollaunch.com" target="_blank" rel="noopener"><img src="https://smollaunch.com/badges/featured.svg" alt="TikTokio — Featured on Smol Launch" loading="lazy" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://outvote.lol/p/tiktokio-cam?ref=badge"><img src="https://outvote.lol/badge.svg?theme=light&amp;draft=eeaa903a-2f43-47b2-bf35-c3bd07dfb2d9" alt="Discover us on Outvote" width="120" height="36" /></a>`,
+    html: `<a href="https://outvote.lol/p/tiktokio-cam?ref=badge"><img loading="lazy" decoding="async" src="https://outvote.lol/badge.svg?theme=light&amp;draft=eeaa903a-2f43-47b2-bf35-c3bd07dfb2d9" alt="Discover us on Outvote" width="120" height="36" /></a>`,
   },
   
   {
-    html: `<a href="https://best-ai.org" target="_blank" rel="noopener"><img src="https://best-ai.org/images/badge-best-ai-org.png" alt="Listed on Best-AI.org" width="120" height="36"/></a>`,
+    html: `<a href="https://best-ai.org" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://best-ai.org/images/badge-best-ai-org.png" alt="Listed on Best-AI.org" width="120" height="36"/></a>`,
   },
   {
-    html: `<a href="https://aitrovex.com/" target="_blank"><img src="https://aitrovex.com/badge-listed-light.svg" alt="Listed on AITroveX" style="height: 36px; width: 120px;" /></a>`,
+    html: `<a href="https://aitrovex.com/" target="_blank"><img loading="lazy" decoding="async" src="https://aitrovex.com/badge-listed-light.svg" alt="Listed on AITroveX" style="height: 36px; width: 120px;" /></a>`,
   },
   {
-    html: `<a href="https://lift-off.sh/p/tiktokio" target="_blank" title="LiftOff launch badge"><img src="https://lift-off.sh/images/badges/badgeLaunchedLight.webp" alt="Tiktokio on LiftOff Badge" width="120" height="36" /></a>`,
+    html: `<a href="https://lift-off.sh/p/tiktokio" target="_blank" title="LiftOff launch badge"><img loading="lazy" decoding="async" src="https://lift-off.sh/images/badges/badgeLaunchedLight.webp" alt="Tiktokio on LiftOff Badge" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://launchboard.dev" target="_blank" rel="noopener"><img src="https://launchboard.dev/launchboard-badge.png" alt="Launched on LaunchBoard - Product Launch Platform" width="120" height="36" /></a>`,
+    html: `<a href="https://launchboard.dev" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://launchboard.dev/launchboard-badge.png" alt="Launched on LaunchBoard - Product Launch Platform" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://www.launchvault.dev" target="_blank" title="Featured on LaunchVault"><img src="https://www.launchvault.dev/images/badges/launch-valut-badge.svg" alt="Featured on LaunchVault" style="width: 120px; height: 36;" /></a>`,
+    html: `<a href="https://www.launchvault.dev" target="_blank" title="Featured on LaunchVault"><img loading="lazy" decoding="async" src="https://www.launchvault.dev/images/badges/launch-valut-badge.svg" alt="Featured on LaunchVault" style="width: 120px; height: 36;" /></a>`,
   },
   {
-    html: `<a href="https://openhunts.com" target="_blank" title="OpenHunts Club"><img alt="OpenHunts Club Member" height="36" src="https://cdn.openhunts.com/badges/club.webp" style="width: 120px; height: 36px;" width="120"></a>`,
+    html: `<a href="https://openhunts.com" target="_blank" title="OpenHunts Club"><img loading="lazy" decoding="async" alt="OpenHunts Club Member" height="36" src="https://cdn.openhunts.com/badges/club.webp" style="width: 120px; height: 36px;" width="120"></a>`,
   },
   {
-    html: `<a href="https://submityourstartup.now/s/tiktokio" target="_blank" rel="noopener"><img src="https://submityourstartup.now/s/tiktokio/badge.png" alt="TikTokio: launched on Submit Your Startup" width="120" height="36" /></a>`,
+    html: `<a href="https://submityourstartup.now/s/tiktokio" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://submityourstartup.now/s/tiktokio/badge.png" alt="TikTokio: launched on Submit Your Startup" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://bigkr.com" target="_blank"><img src="https://bigkr.com/badge/badge_light.svg" alt="Featured on BigKr" width="136" height="36" /></a>`,
+    html: `<a href="https://bigkr.com" target="_blank"><img loading="lazy" decoding="async" src="https://bigkr.com/badge/badge_light.svg" alt="Featured on BigKr" width="136" height="36" /></a>`,
   },
   {
-    html: `<a href="https://www.showmysites.com" target="_blank" rel="noopener"><img src="https://www.showmysites.com/static/backlink/name_logo.webp" alt="ShowMySites Badge" width="120" height="36" /></a>`,
-  },
-
-  {
-    html: `<a href="https://www.webprojectlist.com/" target="_blank" rel="noopener"><img src="https://www.webprojectlist.com/static/backlink/webprojectlist_name_logo.6a3366e98900.webp" alt="WebProjectList Badge" width="120" height="36" /></a>`,
-  },
-  {
-    html: `<a href="https://startupog.com" target="_blank" rel="noopener"><img src="https://startupog.com/startupog-badge-wide.webp" alt="Featured on StartupOG" width="120" height="36" /></a>`
+    html: `<a href="https://www.showmysites.com" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://www.showmysites.com/static/backlink/name_logo.webp" alt="ShowMySites Badge" width="120" height="36" /></a>`,
   },
 
   {
-    html: `<a href="https://blackhawkegames.com/?utm_source=badge" target="_blank" rel="noopener"><img src="https://blackhawkegames.com/brand/blackhawkegames/badge-light.svg" alt="Featured on BlackHawkGame" width="120" height="36" /></a>`,
+    html: `<a href="https://www.webprojectlist.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://www.webprojectlist.com/static/backlink/webprojectlist_name_logo.6a3366e98900.webp" alt="WebProjectList Badge" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://nexablocks.com/?utm_source=badge" target="_blank" rel="noopener"><img src="https://nexablocks.com/brand/nexablocks/badge-light.svg" alt="Featured on NexaBlocks" width="120" height="36" /></a>`,
+    html: `<a href="https://startupog.com" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://startupog.com/startupog-badge-wide.webp" alt="Featured on StartupOG" width="120" height="36" /></a>`
   },
 
   {
-    html: `<a href="https://upperstory.io/?utm_source=badge" target="_blank" rel="noopener"><img src="https://upperstory.io/brand/upperstory/badge-light.svg" alt="Featured on Upperstory" width="120" height="36" /></a>`,
+    html: `<a href="https://blackhawkegames.com/?utm_source=badge" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://blackhawkegames.com/brand/blackhawkegames/badge-light.svg" alt="Featured on BlackHawkGame" width="120" height="36" /></a>`,
+  },
+  {
+    html: `<a href="https://nexablocks.com/?utm_source=badge" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://nexablocks.com/brand/nexablocks/badge-light.svg" alt="Featured on NexaBlocks" width="120" height="36" /></a>`,
+  },
+
+  {
+    html: `<a href="https://upperstory.io/?utm_source=badge" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://upperstory.io/brand/upperstory/badge-light.svg" alt="Featured on Upperstory" width="120" height="36" /></a>`,
   },
   
   {
-    html: `<a href="https://buildrship.xyz/products/musicallydown" target="_blank" rel="nofollow noopener noreferrer"><img src="https://buildrship.xyz/assets/featured-on-buildrship-v2.png" alt="Featured on Buildrship" width="120" height="36" /></a>`,
+    html: `<a href="https://buildrship.xyz/products/musicallydown" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" decoding="async" src="https://buildrship.xyz/assets/featured-on-buildrship-v2.png" alt="Featured on Buildrship" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://hicyou.com" target="_blank" rel="noopener"><img src="https://hicyou.com/badge/featured-light.svg" alt="Featured" width="120" height="36" /></a>`,
+    html: `<a href="https://hicyou.com" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://hicyou.com/badge/featured-light.svg" alt="Featured" width="120" height="36" /></a>`,
   },
   {
-    html: `<a href="https://xlayers.dev/?utm_source=badge" target="_blank" rel="noopener"><img src="https://xlayers.dev/brand/xlayers/badge-light.svg" alt="Featured on Xlayers" width="120" height="36" /></a>`,
+    html: `<a href="https://xlayers.dev/?utm_source=badge" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://xlayers.dev/brand/xlayers/badge-light.svg" alt="Featured on Xlayers" width="120" height="36" /></a>`,
   }
 ];

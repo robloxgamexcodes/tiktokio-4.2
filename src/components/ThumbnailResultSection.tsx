@@ -9,8 +9,6 @@ interface ResultSectionProps {
 }
 
 function ResultSection(props: ResultSectionProps) {
-  console.log("DEBUG: ResultSection rendering with props.data:", props.data);
-  console.log("DEBUG: props.data?.result exists?", !!props.data?.result);
   
   if (!props.data || !props.data.result) {
     return null;
@@ -32,7 +30,6 @@ function ResultSection(props: ResultSectionProps) {
   // Thumbnail for background
   const thumbnail = props.data.result.thumbnail;
   
-  console.log("DEBUG: Using IMG tag approach for thumbnail:", thumbnail);
   
   return (
     <div class="mt-6">
@@ -53,7 +50,6 @@ function ResultSection(props: ResultSectionProps) {
                   zIndex: 1,
                   pointerEvents: 'none'
                 }}
-                onLoad={() => console.log("✅ Background IMG loaded successfully")}
                 onError={() => console.error("❌ Background IMG failed to load")}
               />
               
