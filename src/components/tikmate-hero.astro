@@ -26,7 +26,9 @@ const { dynamic = false } = Astro.props;
         <p class="mt-2 text-lg leading-8 text-black">{t("tikmate.hero.subtitle")}</p>
 
     
-    <InputScreen client:only="solid-js" />
+    <InputScreen client:only="solid-js">
+      <div slot="fallback" class="input-skeleton" aria-hidden="true"></div>
+    </InputScreen>
       
 
 </div>

@@ -40,7 +40,6 @@ function InputScreen({}: Props) {
 
   createEffect(() => {
     const currentData = data();
-    console.log("🔄 Data signal changed:", currentData);
   });
 
   // Function to extract TikTok URL from text

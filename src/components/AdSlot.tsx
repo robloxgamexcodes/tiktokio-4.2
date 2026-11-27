@@ -5,7 +5,6 @@
 // injecting the <script> into a Solid component: the script always runs on a fresh document, it finds its
 // container by id immediately, and it can never be skipped by a "already loaded" guard when the result
 // screen is shown more than once. The frame grows/shrinks to fit whatever the network renders.
-import { onMount, onCleanup } from "solid-js";
 
 const AD_ID = "531da32ec3fcb205a3490d7e5bc1f538";
 
@@ -18,42 +17,21 @@ const AD_DOC = `<!doctype html><html><head><meta charset="utf-8">
 </body></html>`;
 
 function AdSlot() {
-  let frame: HTMLIFrameElement | undefined;
-  let timer: number | undefined;
-
-  const fit = () => {
-    try {
-      const doc = frame?.contentDocument;
-      if (!frame || !doc?.body) return;
-      const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-      if (h > 0) frame.style.height = h + "px";
-    } catch {
-      /* cross-origin: keep default height */
-    }
-  };
-
-  onMount(() => {
-    // Resize to the ad's real height (ads render a moment after load).
-    timer = window.setInterval(fit, 700);
-    window.setTimeout(() => timer && window.clearInterval(timer), 30000);
-  });
-
-  onCleanup(() => {
-    if (timer) window.clearInterval(timer);
-  });
-
+  // Fixed 336x280 box: the ad renders inside it without ever moving the content below (CLS),
+  // and there is no polling timer touching the iframe document (INP / forced layout).
   return (
-    <div class="flex justify-center items-center w-full my-4">
+    <div
+      class="flex justify-center items-start w-full my-4"
+      style={{ "min-height": "280px" }}
+    >
       <iframe
-        ref={frame}
         title="Advertisement"
         data-ad-slot="bancadeltempo"
         data-ad-id={AD_ID}
         srcdoc={AD_DOC}
         scrolling="no"
         frameborder="0"
-        onLoad={fit}
-        style={{ width: "100%", "max-width": "336px", "min-height": "250px", border: "0", overflow: "hidden" }}
+        style={{ width: "100%", "max-width": "336px", height: "280px", border: "0", overflow: "hidden" }}
       />
     </div>
   );
