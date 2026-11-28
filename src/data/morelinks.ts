@@ -130,7 +130,10 @@ export const featuredLinks: FeaturedLink[] = [
   {
     html: `<a href="https://xlayers.dev/?utm_source=badge" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://xlayers.dev/brand/xlayers/badge-light.svg" alt="Featured on Xlayers" width="120" height="36" /></a>`,
   },
-  { html: `<a href="https://xinquji.com" target="_blank" rel="noopener noreferrer"><img src="https://xinquji.com/badge?lang=en" alt="Featured on Xinquji.com" style="width:200px;height:54px;" width="120" height="36" /></a>`,
-
+  { 
+    html: `<a href="https://xinquji.com" target="_blank" rel="noopener noreferrer"><img src="https://xinquji.com/badge?lang=en" alt="Featured on Xinquji.com" style="width:200px;height:54px;" width="120" height="36" /></a>`,
+  },
+  { 
+    html: `<a href="https://dang.ai" target="_blank" rel="dofollow noopener" style="display:inline-block;text-decoration:none;"><img src="https://assets.dang.ai/badges/dang-verified-light.png" alt="Verified on DANG!" width="260" height="94" style="display:block;width:120px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;" /></a>`,
   }
 ];
