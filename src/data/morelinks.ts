@@ -129,5 +129,8 @@ export const featuredLinks: FeaturedLink[] = [
   },
   {
     html: `<a href="https://xlayers.dev/?utm_source=badge" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="https://xlayers.dev/brand/xlayers/badge-light.svg" alt="Featured on Xlayers" width="120" height="36" /></a>`,
+  },
+  { html: `<a href="https://xinquji.com" target="_blank" rel="noopener noreferrer"><img src="https://xinquji.com/badge?lang=en" alt="Featured on Xinquji.com" style="width:200px;height:54px;" width="120" height="36" /></a>`,
+
   }
 ];
