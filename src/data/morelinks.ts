@@ -135,5 +135,8 @@ export const featuredLinks: FeaturedLink[] = [
   },
   { 
     html: `<a href="https://dang.ai" target="_blank" rel="dofollow noopener" style="display:inline-block;text-decoration:none;"><img src="https://assets.dang.ai/badges/dang-verified-light.png" alt="Verified on DANG!" width="260" height="94" style="display:block;width:120px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;" /></a>`,
+  },
+  { 
+    html: `<a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge0-white.svg" alt="Featured on Twelve Tools" width="120" height="36"></a>`,
   }
 ];
